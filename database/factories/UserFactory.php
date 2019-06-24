@@ -11,6 +11,6 @@ $factory->define(User::class, function (Faker $faker) {
         "email"=>$faker->unique()->email,
         "password"=>$faker->password,
         "telefono"=>$faker->phoneNumber,
-        "rol"=>3
+
     ];
 });
