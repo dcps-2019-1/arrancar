@@ -16,12 +16,12 @@ class CreateConductoresTable extends Migration
         Schema::create('conductores', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('empresa_id');
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('contraseña');
             $table->string('telefono');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('nombre');
-            $table->string('cedula');
+            $table->string('cedula')->unique();
             $table->timestamps();
         });
     }
