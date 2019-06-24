@@ -15,10 +15,7 @@ class CreateEmpresasTable extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('username')->unique();
-            $table->string('contraseña');
-            $table->string('telefono');
-            $table->string('email')->unique();
+            $table->unsignedInteger('user_id');
             $table->string('nit')->unique();
             $table->string('representante-legal'); //nombre de representante legal.
             $table->timestamps();

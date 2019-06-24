@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Conductor;
+use App\User;
 
 class Empresa extends Model
 {
@@ -13,5 +14,10 @@ class Empresa extends Model
     public function conductores()
     {
         return $this->hasMany(Conductor::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
