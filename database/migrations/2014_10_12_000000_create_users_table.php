@@ -13,6 +13,8 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+
+        //HAY QUE IMPLEMENTAR REGISTRAR USUARIOS (CLIENTES) DESDE EL MODULO DE AUTH, PARECE SER MUY BREVE
         Schema::defaultStringLength(191);
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
