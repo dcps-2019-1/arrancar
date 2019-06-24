@@ -14,9 +14,16 @@ class CreateConductoresTable extends Migration
     public function up()
     {
         Schema::create('conductores', function (Blueprint $table) {
+            //id propio de esta tabla
             $table->bigIncrements('id');
-            $table->unsignedInteger('user_id');
+            //el id correspondiente a la tabla general de usuarios
+            $table->unsignedBigInteger('user_id');
+            //id con el que se referencia la empresa
             $table->unsignedBigInteger('empresa_id');
+            $table->string('username')->unique();
+            $table->string('contraseña');
+            $table->string('telefono');
+            $table->string('email')->unique();
             $table->string('nombre');
             $table->string('cedula')->unique();
             $table->timestamps();
