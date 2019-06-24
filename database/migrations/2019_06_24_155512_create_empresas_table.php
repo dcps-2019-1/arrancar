@@ -18,6 +18,7 @@ class CreateEmpresasTable extends Migration
             $table->bigIncrements('id');
             //con el  que se referencia en la tabla usuarios
             $table->unsignedBigInteger('user_id');
+            $table->string('nombre')->unique();
             $table->string('nit')->unique();
             $table->string('representante-legal'); //nombre de representante legal.
             $table->timestamps();
