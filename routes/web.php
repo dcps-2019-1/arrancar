@@ -15,11 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
 
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/conductor', 'ConductorController@index')->name('conductor');
+Route::get('/empresa', 'EmpresaController@index')->name('empresa');
+//Route::get('/home', 'HomeController@index')->name('home');
