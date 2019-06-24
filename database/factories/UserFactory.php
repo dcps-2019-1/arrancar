@@ -9,7 +9,7 @@ $factory->define(User::class, function (Faker $faker) {
 
     return [ "username"=>$faker->unique()->userName,
         "email"=>$faker->unique()->email,
-        "password"=>$faker->password,
+        "password"=>bcrypt($faker->password),
         "telefono"=>$faker->phoneNumber,
 
     ];
