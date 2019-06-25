@@ -29,7 +29,31 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                @guest
+                @else
+                    @if (Auth::user()->rol == 2)
+                        <nav class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/empresa/registrar-conductor">Registrar conductor</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Registrar bus</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Programar viaje</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Registrar ruta</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Mantenimiento</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Información</a>
+                            </li>
+                        </nav>
+                    @endif
+                @endguest
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
