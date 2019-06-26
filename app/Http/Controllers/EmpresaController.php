@@ -54,7 +54,7 @@ class EmpresaController extends Controller
             "cedula"=>$data["cedula"],
             "empresa_id"=>$idEmpresaParaConductor]);
         $exito="El conductor ha sido agregado con exito";
-        return view('empresa.inicio');
+        return redirect("/empresa/registrar-conductor");
 }
 
 }
