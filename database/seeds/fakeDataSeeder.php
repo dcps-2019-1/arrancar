@@ -22,7 +22,12 @@ class fakeDataSeeder extends Seeder
         DB::table("conductores")->truncate();
         DB::table("empresas")->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+        //usuarios de prueba conductor y empresa:
 
+        $userfakeempresa=User::create(["username"=>"empresa1","email"=>"empresa1@unal.edu.co","password"=>bcrypt("123456"),"telefono"=>2312345,"rol"=>2]);
+        $empresa=Empresa::create(["user_id"=>$userfakeempresa->id,"nombre"=>"Transportes chimberos","nit"=>122233323,"representante-legal"=>"Alvaro Uribe Velez"]);
+        $userfakeconductor=User::create(["username"=>"conductor1","email"=>"conductor1@unal.edu.co","password"=>bcrypt("123456"),"telefono"=>2322345,"rol"=>3]);
+        $conductor=Conductor::create(["empresa_id"=>$empresa->id,"user_id"=>$userfakeconductor->id,"nombre"=>"Ivan Duque","cedula"=>234567]);
         //Seeder para meter conductores y empresas a la BD, así mismo, primero se debe crear el usuario en la tabla general.
         for ($i = 1; $i <= 10; $i++) {
 

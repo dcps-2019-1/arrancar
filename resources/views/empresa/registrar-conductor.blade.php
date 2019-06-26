@@ -10,35 +10,55 @@
     
         <div class="row-">
             <div class="col-12">
-                <form action="/empresa/registrar-conductor" method="POST">
+                <form action={{route("registro_conductor")}} method="POST">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
                         <input type="text" name="nombre" value="{{ old('nombre') }}" class="form-control">
+                        @if ($errors->has('nombre'))
+                            <p>{{ $errors->first('nombre') }}</p>
+                        @endif
+
                     </div>
     
                     <div class="form-group">
                         <label for="cedula">Cedula</label>
                         <input type="text" name="cedula" value="{{ old('cedula') }}" class="form-control">
+                        @if ($errors->has('cedula'))
+                            <p>{{ $errors->first('cedula') }}</p>
+                        @endif
                     </div>
     
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" name="username" value="{{ old('username') }}" class="form-control">
+                        @if ($errors->has('username'))
+                            <p>{{ $errors->first('username') }}</p>
+                        @endif
                     </div>
     
                     <div class="form-group">
                         <label for="email">E-mail</label>
                         <input type="text" name="email" value="{{ old('email') }}" class="form-control">
+                        @if ($errors->has('email'))
+                            <p>{{ $errors->first('email') }}</p>
+                        @endif
+
                     </div>
     
                     <div class="form-group">
                         <label for="password">Contraseña</label>
-                        <input type="text" name="password" value="{{ old('password') }}" class="form-control">
+                        <input type="password" name="password" value="{{ old('password') }}" class="form-control">
+                        @if ($errors->has('password'))
+                            <p>{{ $errors->first('password') }}</p>
+                        @endif
                     </div>
     
                     <div class="form-group">
                         <label for="telefono">Telefono</label>
                         <input type="text" name="telefono" value="{{ old('telefono') }}" class="form-control">
+                        @if ($errors->has('telefono'))
+                            <p>{{ $errors->first('telefono') }}</p>
+                        @endif
                     </div>
     
                     <button type="submit" class="btn btn-primary">Registrar</button>
@@ -47,7 +67,7 @@
                 </form>
             </div>
         </div>
-    
+
         <hr>
         
         <div class="row-">

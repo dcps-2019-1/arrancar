@@ -23,5 +23,8 @@ Route::get('/register', function (){return view('auth.register');})->name("regis
 
 Route::get('/conductor', 'ConductorController@index')->name('conductor');
 Route::get('/empresa', 'EmpresaController@index')->name('empresa');
+
+//Dos urls para la misma ruta, una que por defecto lista, la otra para recibir la petición del formulario
 Route::get('/empresa/registrar-conductor', 'EmpresaController@listarConductores');
+Route::post('/empresa/registrar-conductor', 'EmpresaController@registrarConductores')->name("registro_conductor");
 //Route::get('/home', 'HomeController@index')->name('home');
