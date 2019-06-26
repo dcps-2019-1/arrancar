@@ -46,7 +46,7 @@ class EmpresaController extends Controller
         //Agregar nuevo usuario a la tabla general
         $newUser=User::create(["username"=>$data["username"],
             "email"=>$data["email"],
-            "password"=>$data["password"],
+            "password"=>bcrypt($data["password"]),
             "rol"=>3,
             "telefono"=>$data["telefono"]]);
         $newConductor=Conductor::create(["user_id"=>$newUser->id,
