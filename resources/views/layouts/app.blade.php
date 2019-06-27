@@ -37,7 +37,7 @@
                                 <a class="nav-link active" href="/empresa/registrar-conductor">Registrar conductor</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Registrar bus</a>
+                                <a class="nav-link active" href={{route("listar_buses")}}>Registrar bus</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">Programar viaje</a>
