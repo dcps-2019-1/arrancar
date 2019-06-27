@@ -18,7 +18,7 @@ class AddBusSeeder extends Seeder
         DB::table("buses")->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
 
-        factory(Bus::class,5)->create(["empresa_id"=>3]);
+        factory(Bus::class,5)->create(["empresa_id"=>1]);
 
 
     }
