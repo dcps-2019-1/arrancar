@@ -27,4 +27,7 @@ Route::get('/empresa', 'EmpresaController@index')->name('empresa');
 //Dos urls para la misma ruta, una que por defecto lista, la otra para recibir la petición del formulario
 Route::get('/empresa/registrar-conductor', 'EmpresaController@listarConductores');
 Route::post('/empresa/registrar-conductor', 'EmpresaController@registrarConductores')->name("registro_conductor");
+
+Route::get('/empresa/registrar-bus', 'BusController@listarBuses')->name("listar_buses");
+Route::post('/empresa/registrar-bus', 'BusController@registrarBuses')->name("registrar_buses");
 //Route::get('/home', 'HomeController@index')->name('home');

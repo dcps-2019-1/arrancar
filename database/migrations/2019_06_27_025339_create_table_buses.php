@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateTableBuses extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('buses', function (Blueprint $table) {
+            //codigo hace referencia al código que le genera internamente la compañia
+            $table->unsignedInteger('codigo');
+            $table->string('placa');
+            $table->unsignedBigInteger("empresa_id");
+            $table->unsignedInteger('numero_sillas');
+            //cambia sí el bus está en mantenimiento
+            $table->string('estado')->default("disponible");
+            //basico, premium son las posibles categorias
+            $table->string('categoria')->default("basico");
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('table_buses');
+    }
+}
