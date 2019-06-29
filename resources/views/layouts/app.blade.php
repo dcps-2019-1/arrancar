@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm">
             <div class="container">
                 <a class="navbar-brand font-weight-bold text-light" href="{{ url('/') }}">
-                    <h1 class="display-5">{{ config('Arrancar', 'Arrancar') }}</h1>
+                    <h1 class="display-5"><i class="fas fa-bus"></i>{{ config(' Arrancar', ' Arrancar') }}</h1>
                 </a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
