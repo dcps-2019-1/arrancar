@@ -21,39 +21,11 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('ARANCAR', 'ARRANCAR') }}
+                <a class="navbar-brand font-weight-bold text-light" href="{{ url('/') }}">
+                    <h1 class="display-5">{{ config('Arrancar', 'Arrancar') }}</h1>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                @guest
-                @else
-                    @if (Auth::user()->rol == 2)
-                        <nav class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="/empresa/registrar-conductor">Registrar conductor</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href={{route("listar_buses")}}>Registrar bus</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Programar viaje</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Registrar ruta</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Mantenimiento</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Información</a>
-                            </li>
-                        </nav>
-                    @endif
-                @endguest
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
@@ -61,20 +33,20 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto font-weight-bold">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
 
@@ -95,8 +67,16 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
+        <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm">
+            <div class="container">
+                @auth
+                @if (auth::user()->rol == 2)
+                @include('empresa.nav')
+                @endif
+                @endauth
+            </div>
+        </nav>
+        <main class="py-5">
             @yield('content')
         </main>
     </div>
