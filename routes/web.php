@@ -30,4 +30,12 @@ Route::post('/empresa/registrar-conductor', 'EmpresaController@registrarConducto
 
 Route::get('/empresa/registrar-bus', 'BusController@listarBuses')->name("listar_buses");
 Route::post('/empresa/registrar-bus', 'BusController@registrarBuses')->name("registrar_buses");
+
+Route::view('/empresa/programar-viaje', 'empresa.programar-viaje');
+
+Route::view('/empresa/registrar-ruta', 'empresa.registrar-ruta');
+
+Route::view('/empresa/programar-mantenimiento', 'empresa.programar-mantenimiento');
+
+Route::view('/empresa/consultar-informacion', 'empresa.consultar-informacion');
 //Route::get('/home', 'HomeController@index')->name('home');

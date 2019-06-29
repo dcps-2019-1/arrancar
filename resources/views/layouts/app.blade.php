@@ -72,6 +72,7 @@
                 @auth
                 @if (auth::user()->rol == 2)
                 @include('empresa.nav')
+                @elseif(auth::user()->rol == 3)
                 @endif
                 @endauth
             </div>
