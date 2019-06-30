@@ -38,11 +38,13 @@
     
                     <div class="form-group">
                         <label for="categoria">Categoria</label>
-                        <input type="text" name="categoria" value="{{ old('categoria') }}" class="form-control">
+                        <select type="select" name="categoria" value="{{ old('categoria') }}" class="form-control">
+                         <option value="basico">Basico</option>
+                         <option value="premium">Premium</option>
                         @if ($errors->has('categoria'))
                             <p>{{ $errors->first('categoria') }}</p>
                         @endif
-
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Registrar Bus</button>
     
