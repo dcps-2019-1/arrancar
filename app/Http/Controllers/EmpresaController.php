@@ -25,19 +25,22 @@ class EmpresaController extends Controller
     public function  registrarConductores(){
         //Validar que los datos esten completos
         $data=request()->validate(["nombre"=>"required",
-            "cedula"=>"required|unique:conductores,cedula",
-            "email"=>"required|unique:users,email",
-            "username"=>"required|unique:users,email",
-            "password"=>"required",
+            "cedula"=>"required|unique:conductores,cedula|numeric",
+            "email"=>"required|unique:users,email|email",
+            "username"=>"required|unique:users,username",
+            "password"=>"required|min:6",
             "telefono"=>"required"],["nombre.required"=>"El campo nombre es obligatorio",
+                "cedula.numeric"=>"El campo cédula debe ser númerico",
                 "cedula.required"=>"El campo cédula es obligatorio",
                 "cedula.unique"=>"Esta cédula ya está asociada a otro conductor",
                 "username.required"=>"El campo username es obligatorio",
                 "username.unique"=>"Este username ya existe para algún conductor",
                 "password.required"=>"El campo password es obligatorio",
+                "password.min"=>"La contraseña debe tener mínimo 6 caracteres",
                 "telefono.required"=>"El campo teléfono es obligatorio",
             "email.required"=>"El campo email es obligatorio",
-            "email.unique"=>"El email ya existe en el sistema"]);
+            "email.unique"=>"El email ya existe en el sistema",
+            "email.email"=>"El email no tiene formato válido"]);
         //Obtengamos primero el id de la empresa en la tabla empresas. Sabiendo que estoy con el id de la empresa en la tabla usuarios
         $idDeEmpresaEnusuarios= Auth::user()->id;
         $idDeEmpresaEnEmpresas=Empresa::where("user_id",$idDeEmpresaEnusuarios)->first();
