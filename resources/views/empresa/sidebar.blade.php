@@ -13,10 +13,10 @@
         <a href="/empresa/registrar-ruta"><i class="fas fa-map-marked-alt"></i> Registrar ruta</a>
     </li>
     <li>
-        <a href="/empresa/programar-mantenimiento"><i class="fas fa-wrench"></i> Programa mantemiento</a>
+        <a href="/empresa/programar-mantenimiento"><i class="fas fa-wrench"></i> Programar mantenimiento</a>
     </li>
     <li>
-        <a href="/empresa/consultar-informacion"><i class="fas fa-question-circle"></i> Consular informacion</a>
+        <a href="/empresa/consultar-informacion"><i class="fas fa-question-circle"></i> Consultar información</a>
     </li>
 </ul>
 <ul class="list-unstyled">

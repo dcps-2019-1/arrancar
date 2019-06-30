@@ -113,19 +113,20 @@
         }
         
         #sidebar ul li a:hover {
-        color: #7386D5;
+        color: #3399f3;
         background: #fff;
         }
         
-        #sidebar ul li.active>a,
-        a[aria-expanded="true"] {
-        color: #fff;
-        background: #6d7fcc;
+        #navbar a {
+            color: white;
+            background: #3399f3;
         }
-        
-        a[data-toggle="collapse"] {
-        position: relative;
+
+        #navbar ul li a:hover {
+            color:#3399f3;
+            background: white;
         }
+
         ul ul a {
         font-size: 0.9em !important;
         padding-left: 30px !important;
@@ -210,7 +211,7 @@
                         </button>
                     </div>
                 </nav>
-                <nav class="navbar navbar-expand-md navbar-light color shadow-sm">
+                <nav class="navbar navbar-expand-md navbar-light color shadow-sm" id="navbar">
                     <div class="container">
                         @auth
                         @if (auth::user()->rol == 2)
