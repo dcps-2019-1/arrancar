@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Conductor;
 use App\User;
 use App\Bus;
+use App\Ruta;
 
 class Empresa extends Model
 {
@@ -25,5 +26,10 @@ class Empresa extends Model
     public function buses()
     {
         return $this->hasMany(Bus::class);
+    }
+
+    public function rutas()
+    {
+        return $this->hasMany(Ruta::class);
     }
 }
