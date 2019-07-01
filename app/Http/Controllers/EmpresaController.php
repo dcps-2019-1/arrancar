@@ -52,11 +52,17 @@ class EmpresaController extends Controller
             "password"=>bcrypt($data["password"]),
             "rol"=>3,
             "telefono"=>$data["telefono"]]);
-        $newConductor=Conductor::create(["user_id"=>$newUser->id,
-            "nombre"=>$data["nombre"],
-            "cedula"=>$data["cedula"],
-            "empresa_id"=>$idEmpresaParaConductor]);
-        $exito="El conductor ha sido agregado con exito";
+        if($newUser->wasRecentlyCreated == true){
+            $newConductor = Conductor::create([
+                "user_id" => $newUser->id,
+                "nombre" => $data["nombre"],
+                "cedula" => $data["cedula"],
+                "empresa_id" => $idEmpresaParaConductor
+            ]);
+            if ($newConductor->wasRecentlyCreated == true) {
+                return redirect()->back()->with('alert', 'Conductor agregado exitosamente');
+            } 
+        }
         return redirect("/empresa/registrar-conductor");
 }
 
