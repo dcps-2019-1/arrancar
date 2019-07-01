@@ -15,7 +15,7 @@
                         <h2 class="py-2 text-center text-light">Lugar de salida</h2>
                         <div class="form-group">
                             <select name="departamento" id="departamento" class="
-                                                form-control input-group-lg dynamic" data-dependent="municipio">
+                                                form-control input-group-lg dynamic">
                                 <option value="">Departamento</option>
                                 @foreach ($departamentos as $departamento)
                                 <option value="{{ $departamento->departamento }}">
@@ -36,7 +36,7 @@
                         <h2 class="py-2 text-center text-light">Lugar de llegada</h2>
                         <div class="form-group">
                             <select name="departamento2" id="departamento2" class="
-                                                                    form-control input-group-lg dynamic2" data-dependent2="municipio">
+                                                                    form-control input-group-lg dynamic">
                                 <option value="">Departamento</option>
                                 @foreach ($departamentos as $departamento)
                                 <option value="{{ $departamento->departamento }}">

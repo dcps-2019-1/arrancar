@@ -273,6 +273,7 @@
             $('.dynamic').change(function(e){
                 if($(this).val() != '')
                 {
+                    var select = $(this).attr("id");
                     var value = $(this).val();
                     var _token = $('input[name="_token"]').val();
                     $.ajax({
@@ -281,24 +282,10 @@
                         data:{value:value, _token:_token},
                         success:function(result)
                         {
-                            $('#municipio').html(result);
-                        }
-                        
-                    })
-                }
-            });
-            $('.dynamic2').change(function(e){
-                if($(this).val() != '')
-                {
-                    var value = $(this).val();
-                    var _token = $('input[name="_token"]').val();
-                    $.ajax({
-                        url:"{{ route('rutacontroller.fetch') }}",
-                        method:"POST",
-                        data:{value:value, _token:_token},
-                        success:function(result)
-                        {
-                            $('#municipio2').html(result);
+                            if (select == "departamento") {
+                                $('#municipio').html(result);
+                            }
+                            else $('#municipio2').html(result);
                         }
                         
                     })
