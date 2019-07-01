@@ -8,6 +8,7 @@ use DB;
 use Auth;
 use App\Ruta;
 use App\Empresa;
+use App\Rules\CodigoNoRepetido;
 
 class RutaController extends Controller
 {
@@ -42,7 +43,7 @@ class RutaController extends Controller
             "municipio-origen"=>"required|exists:municipios,municipio",
             "departamento-destino"=>"required|exists:municipios,departamento",
             "municipio_destino"=>"required|exists:municipios,municipio",
-            "codigo"=>"required|numeric|min:1",
+            "codigo"=>['required', 'numeric', 'min:1', new CodigoNoRepetido],
         ]
         ,[
             "departamento-origen.required"=>"* El departamento de salida es obligatorio",
