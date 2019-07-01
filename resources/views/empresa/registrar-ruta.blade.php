@@ -24,6 +24,9 @@
                                     {{ $departamento->departamento }}</option>
                                 @endforeach
                             </select>
+                            @if ($errors->has('departamento-origen'))
+                            <p class="text-danger">{{ $errors->first('departamento-origen') }}</p>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label class="text-center text-light">
@@ -33,6 +36,9 @@
                                                 form-control input-group-lg">
                                 <option value="">Municipio</option>
                             </select>
+                            @if ($errors->has('municipio-origen'))
+                            <p class="text-danger">{{ $errors->first('municipio-origen') }}</p>
+                            @endif
                             {{ csrf_field() }}
                         </div>
                         <div class="form-group">
@@ -47,6 +53,9 @@
                                     {{ $departamento->departamento }}</option>
                                 @endforeach
                             </select>
+                            @if ($errors->has('departamento-destino'))
+                            <p class="text-danger">{{ $errors->first('departamento-destino') }}</p>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label class="text-center text-light">
@@ -57,13 +66,19 @@
                                 <option value="">Municipio</option>
                             </select>
                             {{ csrf_field() }}
+                            @if ($errors->has('municipio_destino'))
+                            <p class="text-danger">{{ $errors->first('municipio_destino') }}</p>
+                            @endif
                         </div>
                         
                         <div class="form-group">
                             <label for="codigo" class="text-center text-light">
                                 Código
                             </label>
-                            <input id="codigo" class="form-control" type="number" name="codigo" min="0">
+                            <input id="codigo" class="form-control" type="number" name="codigo">
+                            @if ($errors->has('codigo'))
+                            <p class="text-danger">{{ $errors->first('codigo') }}</p>
+                            @endif
                         </div>
                     </div>
                     <br>

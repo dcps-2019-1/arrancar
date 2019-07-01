@@ -37,7 +37,22 @@ class RutaController extends Controller
     public function registrarRuta()
     {
         $datos = request();
-
+        $datos = request()->validate([
+            "departamento-origen"=>"required",
+            "municipio-origen"=>"required",
+            "departamento-destino"=>"required",
+            "municipio_destino"=>"required",
+            "codigo"=>"required|numeric|min:1",
+        ]
+        ,[
+            "departamento-origen.required"=>"* El departamento de salida es obligatorio",
+            "municipio-origen.required" => "* El municipio de salida es obligatorio",
+            "departamento-destino.required" => "* El departamento de llegada es obligatorio",
+            "municipio_destino.required" => "* El municipio de llegada es obligatorio",
+            "codigo.required" => "* El código es obligatorio",
+            "codigo.numeric"=>"* El código debe ser un número",
+            "codigo.min"=>"* El código deber ser mayor a cero",
+        ]);
         $empresa = Empresa::where('user_id', Auth::user()->id)->first();
         Ruta::create(['empresa_id'=>$empresa->id, "codigo"=>$datos["codigo"], "municipio-origen"=>$datos["municipio-origen"], "departamento-origen"=>$datos["departamento-origen"]
         , "municipio_destino"=>$datos["municipio_destino"], "departamento-destino"=>$datos["departamento-destino"]]);
