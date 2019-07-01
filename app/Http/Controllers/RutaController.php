@@ -59,8 +59,11 @@ class RutaController extends Controller
             "municipio_destino"=>" El municipio de llegada no existe",
         ]);
         $empresa = Empresa::where('user_id', Auth::user()->id)->first();
-        Ruta::create(['empresa_id'=>$empresa->id, "codigo"=>$datos["codigo"], "municipio-origen"=>$datos["municipio-origen"], "departamento-origen"=>$datos["departamento-origen"]
+        $ruta = Ruta::create(['empresa_id'=>$empresa->id, "codigo"=>$datos["codigo"], "municipio-origen"=>$datos["municipio-origen"], "departamento-origen"=>$datos["departamento-origen"]
         , "municipio_destino"=>$datos["municipio_destino"], "departamento-destino"=>$datos["departamento-destino"]]);
+        if ($ruta->wasRecentlyCreated == true) {
+            return redirect()->back()->with('alert', 'Ruta agregada exitosamente');
+        }
         return redirect("/empresa/registrar-ruta");    
     }
 }
