@@ -152,8 +152,13 @@
         .borde{
             padding: 3px 10px;
             background: #3399f3;
-            border-radius: 10px;
         }
+
+        .btn-subir {
+            background: #3399f3;
+            border-radius: 0px;;
+        }
+
     </style>
 
 </head>
@@ -282,10 +287,10 @@
                         data:{value:value, _token:_token},
                         success:function(result)
                         {
-                            if (select == "departamento") {
-                                $('#municipio').html(result);
+                            if (select == "departamento-origen") {
+                                $('#municipio-origen').html(result);
                             }
-                            else $('#municipio2').html(result);
+                            else $('#municipio_destino').html(result);
                         }
                         
                     })

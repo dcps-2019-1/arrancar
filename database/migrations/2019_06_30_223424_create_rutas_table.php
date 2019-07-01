@@ -21,7 +21,7 @@ class CreateRutasTable extends Migration
             $table->bigInteger('codigo');
             $table->string('municipio-origen');
             $table->string('departamento-origen');
-            $table->string('municipio_origen');
+            $table->string('municipio_destino');
             $table->string('departamento-destino');
             $table->timestamps();
         });
