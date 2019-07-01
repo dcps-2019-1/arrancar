@@ -11,11 +11,9 @@ use Auth;
 class BusController extends Controller
 {
     //
-    public function listarBuses(){
+    public function vistaRegistrar(){
         //obtengo id de empresa loggeada
-        $empresa = Empresa::where('user_id', Auth::user()->id)->first();
-        $buses = Bus::where('empresa_id', $empresa->id)->get();
-        return view('empresa.registrar-bus',["buses"=>$buses,"title"=>"Registrar Buses"]);
+        return view('empresa.registrar-bus',["title"=>"Registrar Bus"]);
 
     }
 

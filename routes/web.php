@@ -25,10 +25,10 @@ Route::get('/conductor', 'ConductorController@index')->name('conductor');
 Route::get('/empresa', 'EmpresaController@index')->name('empresa')->middleware('auth', 'rol:2');
 
 //Dos urls para la misma ruta, una que por defecto lista, la otra para recibir la petición del formulario
-Route::get('/empresa/registrar-conductor', 'EmpresaController@listarConductores')->middleware('auth', 'rol:2');
+Route::get('/empresa/registrar-conductor', 'EmpresaController@vistaRegistrar')->middleware('auth', 'rol:2');
 Route::post('/empresa/registrar-conductor', 'EmpresaController@registrarConductores')->name("registro_conductor")->middleware('auth', 'rol:2');
 
-Route::get('/empresa/registrar-bus', 'BusController@listarBuses')->name("listar_buses")->middleware('auth', 'rol:2');
+Route::get('/empresa/registrar-bus', 'BusController@vistaRegistrar')->name("listar_buses")->middleware('auth', 'rol:2');
 Route::post('/empresa/registrar-bus', 'BusController@registrarBuses')->name("registrar_buses")->middleware('auth', 'rol:2');
 
 Route::view('/empresa/programar-viaje', 'empresa.programar-viaje');

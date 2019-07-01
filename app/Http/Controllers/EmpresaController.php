@@ -15,11 +15,9 @@ class EmpresaController extends Controller
         return view('empresa.inicio');
     }
 
-    public function listarConductores()
+    public function vistaRegistrar()
     {
-        $empresa = Empresa::where('user_id', Auth::user()->id)->first();
-        $conductores = Conductor::where('empresa_id', $empresa->id)->get();
-        return view('empresa.registrar-conductor')->with('conductores', $conductores);
+        return view('empresa.registrar-conductor');
     }
 
     public function  registrarConductores(){
