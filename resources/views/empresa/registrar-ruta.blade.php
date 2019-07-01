@@ -14,7 +14,7 @@
                     <div class="borde">
                         <div class="form-group">
                             <label class="py-2 text-center text-light">
-                                Departamento de salida
+                                Departamento de salida *
                             </label>
                             <select name="departamento-origen" id="departamento-origen" class="
                                                 form-control input-group-lg dynamic">
@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group">
                             <label class="text-center text-light">
-                                Municipio de salida
+                                Municipio de salida *
                             </label>
                             <select name="municipio-origen" id="municipio-origen" class="
                                                 form-control input-group-lg">
@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group">
                             <label class="text-center text-light">
-                                Departamento de llegada
+                                Departamento de llegada *
                             </label>
                             <select name="departamento-destino" id="departamento-destino" class="
                                                                                             form-control input-group-lg dynamic">
@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group">
                             <label class="text-center text-light">
-                                Municipio de llegada
+                                Municipio de llegada *
                             </label>
                             <select name="municipio_destino" id="municipio_destino" class="
                                                                                             form-control input-group-lg">
@@ -73,13 +73,15 @@
                         
                         <div class="form-group">
                             <label for="codigo" class="text-center text-light">
-                                Código
+                                Código *
                             </label>
                             <input id="codigo" class="form-control" type="number" name="codigo">
                             @if ($errors->has('codigo'))
                             <p class="text-danger">{{ $errors->first('codigo') }}</p>
                             @endif
                         </div>
+                        <br>
+                        <p class="text-light">* Campos obligatorios</p>
                     </div>
                     <br>
                     <button id="btn-formulario" type="submit" class="btn btn-subir text-light font-weight-bold">Registrar ruta</button>

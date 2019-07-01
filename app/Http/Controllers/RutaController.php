@@ -38,10 +38,10 @@ class RutaController extends Controller
     {
         $datos = request();
         $datos = request()->validate([
-            "departamento-origen"=>"required",
-            "municipio-origen"=>"required",
-            "departamento-destino"=>"required",
-            "municipio_destino"=>"required",
+            "departamento-origen"=>"required|exists:municipios,departamento",
+            "municipio-origen"=>"required|exists:municipios,municipio",
+            "departamento-destino"=>"required|exists:municipios,departamento",
+            "municipio_destino"=>"required|exists:municipios,municipio",
             "codigo"=>"required|numeric|min:1",
         ]
         ,[
@@ -49,9 +49,13 @@ class RutaController extends Controller
             "municipio-origen.required" => "* El municipio de salida es obligatorio",
             "departamento-destino.required" => "* El departamento de llegada es obligatorio",
             "municipio_destino.required" => "* El municipio de llegada es obligatorio",
+            "departamento-origen.exists"=>" El departamento de salida no existe",
+            "departamento-destino"=>" El departamento de llegada no existe",
             "codigo.required" => "* El código es obligatorio",
-            "codigo.numeric"=>"* El código debe ser un número",
-            "codigo.min"=>"* El código deber ser mayor a cero",
+            "codigo.numeric"=>" El código debe ser un número",
+            "codigo.min"=>" El código deber ser mayor a cero",
+            "municipio-origen"=>" El municipio de salida no existe",
+            "municipio_destino"=>" El municipio de llegada no existe",
         ]);
         $empresa = Empresa::where('user_id', Auth::user()->id)->first();
         Ruta::create(['empresa_id'=>$empresa->id, "codigo"=>$datos["codigo"], "municipio-origen"=>$datos["municipio-origen"], "departamento-origen"=>$datos["departamento-origen"]
