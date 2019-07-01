@@ -12,8 +12,10 @@
             <div class="col-12">
                 <form action= {{route("registrar_ruta")}} method="POST">
                     <div class="borde">
-                        <h2 class="py-2 text-light">Lugar de salida</h2>
                         <div class="form-group">
+                            <label class="py-2 text-center text-light">
+                                Departamento de salida
+                            </label>
                             <select name="departamento-origen" id="departamento-origen" class="
                                                 form-control input-group-lg dynamic">
                                 <option value="">Departamento</option>
@@ -24,15 +26,19 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label class="text-center text-light">
+                                Municipio de salida
+                            </label>
                             <select name="municipio-origen" id="municipio-origen" class="
                                                 form-control input-group-lg">
                                 <option value="">Municipio</option>
                             </select>
                             {{ csrf_field() }}
                         </div>
-                        <br>
-                        <h2 class="py-2 text-light">Lugar de llegada</h2>
                         <div class="form-group">
+                            <label class="text-center text-light">
+                                Departamento de llegada
+                            </label>
                             <select name="departamento-destino" id="departamento-destino" class="
                                                                                             form-control input-group-lg dynamic">
                                 <option value="">Departamento</option>
@@ -43,18 +49,21 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label class="text-center text-light">
+                                Municipio de llegada
+                            </label>
                             <select name="municipio_destino" id="municipio_destino" class="
                                                                                             form-control input-group-lg">
                                 <option value="">Municipio</option>
                             </select>
                             {{ csrf_field() }}
                         </div>
-                        <br>
+                        
                         <div class="form-group">
                             <label for="codigo" class="text-center text-light">
-                                <h2>Código</h2>
+                                Código
                             </label>
-                            <input id="codigo" class="form-control" type="number" name="codigo">
+                            <input id="codigo" class="form-control" type="number" name="codigo" min="0">
                         </div>
                     </div>
                     <br>
