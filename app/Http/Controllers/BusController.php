@@ -48,7 +48,10 @@ class BusController extends Controller
 
 
         $empresa = Empresa::where('user_id', Auth::user()->id)->first();
-        Bus::create(["placa"=>$placafin,"codigo"=>$datos["codigo"],"numero_sillas"=>$datos["numero_sillas"],"empresa_id"=>$empresa->id,"categoria"=>$datos["categoria"]]);
+        $bus = Bus::create(["placa"=>$placafin,"codigo"=>$datos["codigo"],"numero_sillas"=>$datos["numero_sillas"],"empresa_id"=>$empresa->id,"categoria"=>$datos["categoria"]]);
+        if ($bus->wasRecentlyCreated == true) {
+            return redirect()->back()->with('alert', 'Bus agregado exitosamente');
+        }
         return redirect("/empresa/registrar-bus");
 
     }
