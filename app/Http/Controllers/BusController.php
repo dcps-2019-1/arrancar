@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 
 use App\Empresa;
 use Illuminate\Http\Request;
-use App\User;
 use App\Bus;
+use File;
 use Auth;
 class BusController extends Controller
 {

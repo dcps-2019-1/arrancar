@@ -13,12 +13,12 @@ class MunicipiosSeeder extends Seeder
     public function run()
     {
         DB::table('municipios')->delete();
-        $json = File::get("database/data/municipios.json");
+        $json = File::get("database/data/municipios2.json");
         $data = json_decode($json);
-        foreach ($data as $obj) {
+        foreach ($data->data as $obj) {
             Municipio::create(array(
-                'departamento' => $obj->departamento,
-                'municipio' => $obj->municipio,
+                'departamento' => $obj[10],
+                'municipio' => $obj[12],
             ));
         }
     }

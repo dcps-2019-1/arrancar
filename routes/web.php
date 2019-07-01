@@ -33,7 +33,9 @@ Route::post('/empresa/registrar-bus', 'BusController@registrarBuses')->name("reg
 
 Route::view('/empresa/programar-viaje', 'empresa.programar-viaje');
 
-Route::view('/empresa/registrar-ruta', 'empresa.registrar-ruta');
+Route::get('empresa/registrar-ruta', 'RutaController@index')->name('listar_departamentos');
+Route::post('empresa/registrar-ruta/fetch2', 'RutaController@fetch')->name('rutacontroller.fetch');
+Route::post('empresa/registrar-ruta', 'RutaController@registrarRuta')->name('registrar_ruta');
 
 Route::view('/empresa/programar-mantenimiento', 'empresa.programar-mantenimiento');
 

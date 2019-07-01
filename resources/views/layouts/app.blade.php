@@ -12,6 +12,8 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet"
@@ -136,12 +138,27 @@
         .color {
             background: #3399f3;
         }
+
+        .texto-inside {
+            color: #3399f3;
+        }
         .content {
         width: 100%;
         min-height: 100vh;
         transition: all 0.3s;
         position: absolute;
         }
+
+        .borde{
+            padding: 3px 10px;
+            background: #3399f3;
+        }
+
+        .btn-subir {
+            background: #3399f3;
+            border-radius: 0px;;
+        }
+
     </style>
 
 </head>
@@ -230,9 +247,7 @@
     <div class="overlay"></div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
         integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous">
@@ -260,6 +275,28 @@
                 $('.collapse.in').toggleClass('in');
                 $('a[aria-expanded=true]').attr('aria-expanded', 'false');
             });
+            $('.dynamic').change(function(e){
+                if($(this).val() != '')
+                {
+                    var select = $(this).attr("id");
+                    var value = $(this).val();
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url:"{{ route('rutacontroller.fetch') }}",
+                        method:"POST",
+                        data:{value:value, _token:_token},
+                        success:function(result)
+                        {
+                            if (select == "departamento-origen") {
+                                $('#municipio-origen').html(result);
+                            }
+                            else $('#municipio_destino').html(result);
+                        }
+                        
+                    })
+                }
+            });
+            
         });
     </script>
 </body>
