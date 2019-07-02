@@ -258,7 +258,6 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js">
     </script>
 
-
     <script type="text/javascript">
         var msg = '{{Session::get('alert')}}';
         var exist = '{{Session::has('alert')}}';
@@ -305,7 +304,6 @@
             
         });
     </script>
-
 </body>
 
 </html>
