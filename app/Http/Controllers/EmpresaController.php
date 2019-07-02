@@ -15,29 +15,30 @@ class EmpresaController extends Controller
         return view('empresa.inicio');
     }
 
-    public function listarConductores()
+    public function vistaRegistrar()
     {
-        $empresa = Empresa::where('user_id', Auth::user()->id)->first();
-        $conductores = Conductor::where('empresa_id', $empresa->id)->get();
-        return view('empresa.registrar-conductor')->with('conductores', $conductores);
+        return view('empresa.registrar-conductor');
     }
 
     public function  registrarConductores(){
         //Validar que los datos esten completos
         $data=request()->validate(["nombre"=>"required",
-            "cedula"=>"required|unique:conductores,cedula",
-            "email"=>"required|unique:users,email",
-            "username"=>"required|unique:users,email",
-            "password"=>"required",
+            "cedula"=>"required|unique:conductores,cedula|numeric",
+            "email"=>"required|unique:users,email|email",
+            "username"=>"required|unique:users,username",
+            "password"=>"required|min:6",
             "telefono"=>"required"],["nombre.required"=>"El campo nombre es obligatorio",
+                "cedula.numeric"=>"El campo cédula debe ser númerico",
                 "cedula.required"=>"El campo cédula es obligatorio",
                 "cedula.unique"=>"Esta cédula ya está asociada a otro conductor",
                 "username.required"=>"El campo username es obligatorio",
                 "username.unique"=>"Este username ya existe para algún conductor",
                 "password.required"=>"El campo password es obligatorio",
+                "password.min"=>"La contraseña debe tener mínimo 6 caracteres",
                 "telefono.required"=>"El campo teléfono es obligatorio",
             "email.required"=>"El campo email es obligatorio",
-            "email.unique"=>"El email ya existe en el sistema"]);
+            "email.unique"=>"El email ya existe en el sistema",
+            "email.email"=>"El email no tiene formato válido"]);
         //Obtengamos primero el id de la empresa en la tabla empresas. Sabiendo que estoy con el id de la empresa en la tabla usuarios
         $idDeEmpresaEnusuarios= Auth::user()->id;
         $idDeEmpresaEnEmpresas=Empresa::where("user_id",$idDeEmpresaEnusuarios)->first();
@@ -49,11 +50,17 @@ class EmpresaController extends Controller
             "password"=>bcrypt($data["password"]),
             "rol"=>3,
             "telefono"=>$data["telefono"]]);
-        $newConductor=Conductor::create(["user_id"=>$newUser->id,
-            "nombre"=>$data["nombre"],
-            "cedula"=>$data["cedula"],
-            "empresa_id"=>$idEmpresaParaConductor]);
-        $exito="El conductor ha sido agregado con exito";
+        if($newUser->wasRecentlyCreated == true){
+            $newConductor = Conductor::create([
+                "user_id" => $newUser->id,
+                "nombre" => $data["nombre"],
+                "cedula" => $data["cedula"],
+                "empresa_id" => $idEmpresaParaConductor
+            ]);
+            if ($newConductor->wasRecentlyCreated == true) {
+                return redirect()->back()->with('alert', 'Conductor agregado exitosamente');
+            } 
+        }
         return redirect("/empresa/registrar-conductor");
 }
 

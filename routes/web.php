@@ -22,18 +22,20 @@ Route::get('/login', function (){return view('auth.login');})->name("login");
 Route::get('/register', function (){return view('auth.register');})->name("register");
 
 Route::get('/conductor', 'ConductorController@index')->name('conductor');
-Route::get('/empresa', 'EmpresaController@index')->name('empresa');
+Route::get('/empresa', 'EmpresaController@index')->name('empresa')->middleware('auth', 'rol:2');
 
 //Dos urls para la misma ruta, una que por defecto lista, la otra para recibir la petición del formulario
-Route::get('/empresa/registrar-conductor', 'EmpresaController@listarConductores');
-Route::post('/empresa/registrar-conductor', 'EmpresaController@registrarConductores')->name("registro_conductor");
+Route::get('/empresa/registrar-conductor', 'EmpresaController@vistaRegistrar')->middleware('auth', 'rol:2');
+Route::post('/empresa/registrar-conductor', 'EmpresaController@registrarConductores')->name("registro_conductor")->middleware('auth', 'rol:2');
 
-Route::get('/empresa/registrar-bus', 'BusController@listarBuses')->name("listar_buses");
-Route::post('/empresa/registrar-bus', 'BusController@registrarBuses')->name("registrar_buses");
+Route::get('/empresa/registrar-bus', 'BusController@vistaRegistrar')->name("listar_buses")->middleware('auth', 'rol:2');
+Route::post('/empresa/registrar-bus', 'BusController@registrarBuses')->name("registrar_buses")->middleware('auth', 'rol:2');
 
 Route::view('/empresa/programar-viaje', 'empresa.programar-viaje');
 
-Route::view('/empresa/registrar-ruta', 'empresa.registrar-ruta');
+Route::get('empresa/registrar-ruta', 'RutaController@index')->name('listar_departamentos')->middleware('auth', 'rol:2');
+Route::post('empresa/registrar-ruta/fetch2', 'RutaController@fetch')->name('rutacontroller.fetch')->middleware('auth', 'rol:2');
+Route::post('empresa/registrar-ruta', 'RutaController@registrarRuta')->name('registrar_ruta')->middleware('auth', 'rol:2');
 
 Route::view('/empresa/programar-mantenimiento', 'empresa.programar-mantenimiento');
 Route::view('/empresa/ListaConductores', 'empresa.ListaConductores');

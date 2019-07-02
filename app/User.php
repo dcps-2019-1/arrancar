@@ -46,4 +46,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Conductor::class);
     }
+
+    public function hasRol($rol)
+    {
+        if ($this->rol == $rol){
+            return true;
+        }
+        return false;
+    }
 }
