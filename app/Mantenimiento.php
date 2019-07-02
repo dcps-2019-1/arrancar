@@ -8,4 +8,6 @@ class Mantenimiento extends Model
 {
     //
     protected $table="mantenimientos";
+    protected  $fillable=["bus_id","fecha_entrada","fecha_salida"];
+    public $timestamps = false;
 }
