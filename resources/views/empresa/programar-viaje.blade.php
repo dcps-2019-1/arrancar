@@ -22,6 +22,9 @@
                                         </option>
                                         @endforeach
                                     </select>
+                                    @if ($errors->has('ruta'))
+                                    <p class="text-danger">{{ $errors->first('ruta') }}</p>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
@@ -33,31 +36,46 @@
                                         </option>
                                         @endforeach
                                     </select>
+                                    @if ($errors->has('conductor'))
+                                    <p class="text-danger">{{ $errors->first('conductor') }}</p>
+                                    @endif
                                 </div>
                                 <div class="col form-group">
                                     <label for="bus" class="text-light">Bus *</label>
                                     <select id="bus" class="form-control" name="bus" value=" {{ old('bus') }} ">
                                         @foreach ($empresa->buses as $bus)
-                                        <option value="{{ $bus->id }}"> {{ $bus->codigo }} - {{ $bus->placa }} - {{ $bus->categoria }}
+                                        <option value="{{ $bus->placa }}"> {{ $bus->codigo }} - {{ $bus->placa }} - {{ $bus->categoria }}
                                         </option>
                                         @endforeach
                                     </select>
+                                    @if ($errors->has('bus'))
+                                    <p class="text-danger">{{ $errors->first('bus') }}</p>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col form-group">
                                     <label for="fecha" class="text-light">Fecha *</label>
                                     <input type="date" name="fecha" value="{{ old('fecha') }}" class="form-control">
+                                    @if ($errors->has('fecha'))
+                                    <p class="text-danger">{{ $errors->first('fecha') }}</p>
+                                    @endif
                                 </div>
                                 <div class="col form-group">
                                     <label for="hora" class="text-light">Hora *</label>
                                     <input type="time" name="hora" value="{{ old('hora') }}" class="form-control">
+                                    @if ($errors->has('hora'))
+                                    <p class="text-danger">{{ $errors->first('hora') }}</p>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col form-group">
                                     <label for="precio" class="text-light">Precio *</label>
                                     <input type="number" name="precio" step="0.01" value=" {{ old('precio') }} " class="form-control">
+                                    @if ($errors->has('precio'))
+                                    <p class="text-danger">{{ $errors->first('precio') }}</p>
+                                    @endif
                                 </div>
                             </div>
                             <br>
@@ -65,6 +83,7 @@
                         </div>
                         <br>
                         <button id="btn-formulario" type="submit" class="btn btn-subir text-light font-weight-bold">Programar viaje</button>
+                        @csrf
                     </form>
                 </div>
             </div>

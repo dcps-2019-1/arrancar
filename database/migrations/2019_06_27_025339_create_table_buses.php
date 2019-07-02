@@ -15,9 +15,8 @@ class CreateTableBuses extends Migration
     {
         Schema::create('buses', function (Blueprint $table) {
             //codigo hace referencia al código que le genera internamente la compañia
-            $table->bigIncrements('id');
             $table->unsignedInteger('codigo');
-            $table->string('placa');
+            $table->string('placa', 32)->index();
             $table->unsignedBigInteger("empresa_id");
             $table->unsignedInteger('numero_sillas');
             //cambia sí el bus está en mantenimiento

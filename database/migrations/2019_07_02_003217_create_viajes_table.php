@@ -15,8 +15,8 @@ class CreateViajesTable extends Migration
     {
         Schema::create('viajes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fecha');
-            $table->string('hora');
+            $table->date('fecha');
+            $table->time('hora');
             $table->string('precio');
             $table->unsignedBigInteger('ruta_id');
             $table->foreign('ruta_id')->references('id')->on('rutas');
@@ -24,8 +24,8 @@ class CreateViajesTable extends Migration
             $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->unsignedBigInteger('conductor_id');
             $table->foreign('conductor_id')->references('id')->on('conductores');
-            $table->unsignedBigInteger('bus_id');
-            $table->foreign('bus_id')->references('id')->on('buses');
+            $table->string('bus_placa', 32)->index();
+            $table->foreign('bus_placa')->references('placa')->on('buses');
             $table->timestamps();
         });
     }
