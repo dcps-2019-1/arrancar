@@ -1,1 +1,27 @@
+
 @extends('layouts.app')
+
+@section('content')
+
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="col text-center">
+                <h2>Opciones de consulta</h2>
+    <div class="list-group">
+        <a href="ListaConductores" class="list-group-item list-group-item-action">Consultar conductores</a>
+        <a href="ListaBuses" class="list-group-item list-group-item-action">Consultar buses</a>
+        <a href="#" class="list-group-item list-group-item-action">Consultar mantenimientos</a>
+
+    </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+@endsection
