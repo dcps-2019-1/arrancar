@@ -36,6 +36,14 @@ Route::view('/empresa/programar-viaje', 'empresa.programar-viaje');
 Route::view('/empresa/registrar-ruta', 'empresa.registrar-ruta');
 
 Route::view('/empresa/programar-mantenimiento', 'empresa.programar-mantenimiento');
-
+Route::view('/empresa/ListaConductores', 'empresa.ListaConductores');
 Route::view('/empresa/consultar-informacion', 'empresa.consultar-informacion');
+
+Route::view('/empresa/ListaBuses', 'empresa.ListaBuses');
+
+
+Route::get('/empresa/ListaConductores', 'ConsultarController@listarConductores');
+Route::get('/empresa/ListaBuses', 'ConsultarController@listarBuses');
+
 //Route::get('/home', 'HomeController@index')->name('home');
+
