@@ -37,6 +37,7 @@ Route::get('empresa/registrar-ruta', 'RutaController@index')->name('listar_depar
 Route::post('empresa/registrar-ruta/fetch2', 'RutaController@fetch')->name('rutacontroller.fetch')->middleware('auth', 'rol:2');
 Route::post('empresa/registrar-ruta', 'RutaController@registrarRuta')->name('registrar_ruta')->middleware('auth', 'rol:2');
 
+
 Route::view('/empresa/programar-mantenimiento', 'empresa.programar-mantenimiento');
 Route::view('/empresa/ListaConductores', 'empresa.ListaConductores');
 Route::view('/empresa/consultar-informacion', 'empresa.consultar-informacion');
@@ -46,6 +47,11 @@ Route::view('/empresa/ListaBuses', 'empresa.ListaBuses');
 
 Route::get('/empresa/ListaConductores', 'ConsultarController@listarConductores');
 Route::get('/empresa/ListaBuses', 'ConsultarController@listarBuses');
+
+Route::get('/empresa/programar-mantenimiento', 'MantenimientoController@listar')->name("programar_mantenimiento")->middleware('auth', 'rol:2');
+Route::post('/empresa/programar-mantenimiento', 'MantenimientoController@createMantenimiento')->name("create_mantenimiento")->middleware('auth', 'rol:2');
+
+//Route::view('/empresa/consultar-informacion', 'empresa.consultar-informacion');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
