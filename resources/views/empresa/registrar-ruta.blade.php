@@ -16,7 +16,7 @@
                             <label class="py-2 text-center text-light">
                                 Departamento de salida *
                             </label>
-                            <select name="departamento-origen" id="departamento-origen" class="
+                            <select name="departamento_origen" id="departamento_origen" class="
                                                 form-control input-group-lg dynamic">
                                 <option value="">Departamento</option>
                                 @foreach ($departamentos as $departamento)
@@ -24,20 +24,20 @@
                                     {{ $departamento->departamento }}</option>
                                 @endforeach
                             </select>
-                            @if ($errors->has('departamento-origen'))
-                            <p class="text-danger">{{ $errors->first('departamento-origen') }}</p>
+                            @if ($errors->has('departamento_origen'))
+                            <p class="text-danger">{{ $errors->first('departamento_origen') }}</p>
                             @endif
                         </div>
                         <div class="form-group">
                             <label class="text-center text-light">
                                 Municipio de salida *
                             </label>
-                            <select name="municipio-origen" id="municipio-origen" class="
+                            <select name="municipio_origen" id="municipio_origen" class="
                                                 form-control input-group-lg">
                                 <option value="">Municipio</option>
                             </select>
-                            @if ($errors->has('municipio-origen'))
-                            <p class="text-danger">{{ $errors->first('municipio-origen') }}</p>
+                            @if ($errors->has('municipio_origen'))
+                            <p class="text-danger">{{ $errors->first('municipio_origen') }}</p>
                             @endif
                             {{ csrf_field() }}
                         </div>
@@ -45,7 +45,7 @@
                             <label class="text-center text-light">
                                 Departamento de llegada *
                             </label>
-                            <select name="departamento-destino" id="departamento-destino" class="
+                            <select name="departamento_destino" id="departamento_destino" class="
                                                                                             form-control input-group-lg dynamic">
                                 <option value="">Departamento</option>
                                 @foreach ($departamentos as $departamento)
@@ -53,8 +53,8 @@
                                     {{ $departamento->departamento }}</option>
                                 @endforeach
                             </select>
-                            @if ($errors->has('departamento-destino'))
-                            <p class="text-danger">{{ $errors->first('departamento-destino') }}</p>
+                            @if ($errors->has('departamento_destino'))
+                            <p class="text-danger">{{ $errors->first('departamento_destino') }}</p>
                             @endif
                         </div>
                         <div class="form-group">

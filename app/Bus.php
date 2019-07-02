@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Empresa;
+use App\Viaje;
 
 class Bus extends Model
 {
@@ -16,4 +17,8 @@ class Bus extends Model
         return $this->belongsTo(Empresa::class);
     }
 
+    public function viajes()
+    {
+        return $this->hasMany(Viaje::class);
+    }
 }

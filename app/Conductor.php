@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Empresa;
 use App\User;
+use App\Viaje;
 
 class Conductor extends Model
 {
@@ -19,5 +20,10 @@ class Conductor extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function viajes()
+    {
+        return $this->hasMany(Viaje::class);
     }
 }

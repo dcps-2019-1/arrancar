@@ -4,13 +4,13 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col">
                 <h1 class="texto-inside">{{$title}}</h1>
             </div>
         </div>
     
         <div class="row py-2">
-            <div class="col-12">
+            <div class="col">
                 <form action={{route("registrar_buses")}} method="POST">
                     <div class="borde">
                         <div class="form-group">

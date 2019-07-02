@@ -19,10 +19,10 @@ class CreateRutasTable extends Migration
             $table->foreign('empresa_id')->references('id')->on('empresas');
 
             $table->bigInteger('codigo');
-            $table->string('municipio-origen');
-            $table->string('departamento-origen');
+            $table->string('municipio_origen');
+            $table->string('departamento_origen');
             $table->string('municipio_destino');
-            $table->string('departamento-destino');
+            $table->string('departamento_destino');
             $table->timestamps();
         });
     }

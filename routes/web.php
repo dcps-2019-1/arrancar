@@ -31,7 +31,8 @@ Route::post('/empresa/registrar-conductor', 'EmpresaController@registrarConducto
 Route::get('/empresa/registrar-bus', 'BusController@vistaRegistrar')->name("listar_buses")->middleware('auth', 'rol:2');
 Route::post('/empresa/registrar-bus', 'BusController@registrarBuses')->name("registrar_buses")->middleware('auth', 'rol:2');
 
-Route::view('/empresa/programar-viaje', 'empresa.programar-viaje');
+Route::get('/empresa/programar-viaje', 'ViajeController@listarRutas')->name("listar_rutas")->middleware('auth', 'rol:2');
+Route::post('/empresa/programar-viaje', 'ViajeController@registrarViaje')->name("registrar_viaje")->middleware('auth', 'rol:2');
 
 Route::get('empresa/registrar-ruta', 'RutaController@index')->name('listar_departamentos')->middleware('auth', 'rol:2');
 Route::post('empresa/registrar-ruta/fetch2', 'RutaController@fetch')->name('rutacontroller.fetch')->middleware('auth', 'rol:2');
