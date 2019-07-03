@@ -13,7 +13,7 @@ class BusController extends Controller
     //
     public function vistaRegistrar(){
         //obtengo id de empresa loggeada
-        return view('empresa.registrar-bus',["title"=>"Registrar Bus"]);
+        return view('empresa.registrar-bus',["title"=>"Registrar Bus","user"=>Auth::user()]);
 
     }
 

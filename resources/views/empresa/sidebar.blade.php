@@ -1,6 +1,10 @@
 <ul class="list-unstyled components">
 
     <li>
+    <a href="/profile"><i class="fas fa-user-edit"></i>
+        Perfil de usuario</a>
+    </li>
+    <li>
         <a href="/empresa/registrar-conductor"><i class="fas fa-user-plus"></i> Registrar conductor</a>
     </li>
     <li>

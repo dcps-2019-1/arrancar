@@ -23,7 +23,7 @@ class MantenimientoController extends Controller
         $buses=Bus::where("empresa_id","=",$idDeEmpresaEnEmpresas->id)
             ->where("estado","disponible")->get();
 
-        return view("empresa.programar-mantenimiento",["buses"=>$buses]);
+        return view("empresa.programar-mantenimiento",["buses"=>$buses,"user"=>Auth::user()]);
 }
 
     public function createMantenimiento(){

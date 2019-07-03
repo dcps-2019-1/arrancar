@@ -14,7 +14,7 @@ class ViajeController extends Controller
 {
     public function listarRutas(){
         $empresa = Empresa::where('user_id', Auth::id())->first();
-        return view('empresa.programar-viaje')->with('empresa', $empresa);
+        return view('empresa.programar-viaje',["empresa"=>$empresa,"user"=>Auth::user()]);
     }
 
     public function registrarViaje()
