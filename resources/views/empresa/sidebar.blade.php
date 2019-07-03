@@ -1,10 +1,6 @@
 <ul class="list-unstyled components">
 
     <li>
-        <img src="{{$user->avatar}}" alt="bla" height="100" width="100" align="center">
-    </li>
-
-    <li>
     <a href="/profile"><i class="fas fa-user-edit"></i>
         Perfil de usuario</a>
     </li>

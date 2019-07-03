@@ -12,8 +12,6 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet"
@@ -97,6 +95,11 @@
         padding: 20px;
         background: #0080ff;
         }
+
+        #sidebar .sidebar-header2 {
+            padding: 20px;
+            background: #0080ff;
+        }
         
         #sidebar ul.components {
         padding: 20px 0;
@@ -159,6 +162,19 @@
             border-radius: 0px;;
         }
 
+        .img1 {
+            width: 50px;
+            height: 50px;
+            border: 1px solid white;
+            border-radius: 50%;
+        }
+
+        .img2 {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin-left: 28px;
+        }
     </style>
 
 </head>
@@ -170,10 +186,15 @@
             <div id="dismiss">
                 <i class="fas fa-arrow-left"></i>
             </div>
-
-            <div class="sidebar-header">
-                <h3><i class="fas fa-bus"></i> Arrancar</h3>
+            @guest
+                <div class="sidebar-header">
+                    <h3><i class="fas fa-bus"></i> Arrancar</h3>
+                </div>
+            @else
+            <div class="sidebar-header2">
+                <img src="{{$user->avatar}}" class="img2">
             </div>
+            @endguest
 
             @guest
                 @include('layouts.sidebar')
@@ -211,18 +232,24 @@
                                 @endif
                                 @else
                                 <li class="nav-item dropdown">
-
-                                    <a class="text-light" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        </i>{{ __('Cerrar sesión') }}
+                                    <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                        <img src="{{$user->avatar}}" class="img1">
                                     </a>
-                                    
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+                                
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item texto-inside" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('Cerrar sesión') }}
+                                        </a>
+                                
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
                                 </li>
                                 @endguest
                             </ul>
-                            
+
                         </div>
                         <button type="button" id="sidebarCollapse" class="btn text-light">
                             <h4><i class="fas fa-align-justify"></i></h4>
@@ -247,13 +274,15 @@
     </div>
     <div class="overlay"></div>
 
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
     <!-- Popper.JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
         integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous">
     </script>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+    integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous">
+</script>
     <!-- jQuery Custom Scroller CDN -->
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js">
