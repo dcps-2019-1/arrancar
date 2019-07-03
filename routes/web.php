@@ -38,7 +38,8 @@ Route::post('empresa/registrar-ruta/fetch2', 'RutaController@fetch')->name('ruta
 Route::post('empresa/registrar-ruta', 'RutaController@registrarRuta')->name('registrar_ruta')->middleware('auth', 'rol:2');
 
 
-Route::view('/empresa/programar-mantenimiento', 'empresa.programar-mantenimiento');
+
+
 Route::view('/empresa/ListaConductores', 'empresa.ListaConductores');
 Route::view('/empresa/consultar-informacion', 'empresa.consultar-informacion');
 
