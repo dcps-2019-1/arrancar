@@ -211,6 +211,7 @@
                                 @endif
                                 @else
                                 <li class="nav-item dropdown">
+
                                     <a class="text-light" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         </i>{{ __('Cerrar sesión') }}
                                     </a>

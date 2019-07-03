@@ -38,7 +38,9 @@ Route::get('empresa/registrar-ruta', 'RutaController@index')->name('listar_depar
 Route::post('empresa/registrar-ruta/fetch2', 'RutaController@fetch')->name('rutacontroller.fetch')->middleware('auth', 'rol:2');
 Route::post('empresa/registrar-ruta', 'RutaController@registrarRuta')->name('registrar_ruta')->middleware('auth', 'rol:2');
 
-
+//perfil del usuario
+Route::get('profile', 'UserController@profile');
+Route::post('profile', 'UserController@update_avatar');
 
 
 Route::view('/empresa/ListaConductores', 'empresa.ListaConductores');
