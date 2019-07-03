@@ -39,28 +39,28 @@ class RutaController extends Controller
     {
         $datos = request();
         $datos = request()->validate([
-            "departamento-origen"=>"required|exists:municipios,departamento",
-            "municipio-origen"=>"required|exists:municipios,municipio",
-            "departamento-destino"=>"required|exists:municipios,departamento",
+            "departamento_origen"=>"required|exists:municipios,departamento",
+            "municipio_origen"=>"required|exists:municipios,municipio",
+            "departamento_destino"=>"required|exists:municipios,departamento",
             "municipio_destino"=>"required|exists:municipios,municipio",
             "codigo"=>['required', 'numeric', 'min:1', new CodigoNoRepetido],
         ]
         ,[
-            "departamento-origen.required"=>"* El departamento de salida es obligatorio",
-            "municipio-origen.required" => "* El municipio de salida es obligatorio",
-            "departamento-destino.required" => "* El departamento de llegada es obligatorio",
+            "departamento_origen.required"=>"* El departamento de salida es obligatorio",
+            "municipio_origen.required" => "* El municipio de salida es obligatorio",
+            "departamento_destino.required" => "* El departamento de llegada es obligatorio",
             "municipio_destino.required" => "* El municipio de llegada es obligatorio",
-            "departamento-origen.exists"=>" El departamento de salida no existe",
-            "departamento-destino"=>" El departamento de llegada no existe",
+            "departamento_origen.exists"=>" El departamento de salida no existe",
+            "departamento_destino"=>" El departamento de llegada no existe",
             "codigo.required" => "* El código es obligatorio",
             "codigo.numeric"=>" El código debe ser un número",
             "codigo.min"=>" El código deber ser mayor a cero",
-            "municipio-origen"=>" El municipio de salida no existe",
+            "municipio_origen"=>" El municipio de salida no existe",
             "municipio_destino"=>" El municipio de llegada no existe",
         ]);
         $empresa = Empresa::where('user_id', Auth::user()->id)->first();
-        $ruta = Ruta::create(['empresa_id'=>$empresa->id, "codigo"=>$datos["codigo"], "municipio-origen"=>$datos["municipio-origen"], "departamento-origen"=>$datos["departamento-origen"]
-        , "municipio_destino"=>$datos["municipio_destino"], "departamento-destino"=>$datos["departamento-destino"]]);
+        $ruta = Ruta::create(['empresa_id'=>$empresa->id, "codigo"=>$datos["codigo"], "municipio_origen"=>$datos["municipio_origen"], "departamento_origen"=>$datos["departamento_origen"]
+        , "municipio_destino"=>$datos["municipio_destino"], "departamento_destino"=>$datos["departamento_destino"]]);
         if ($ruta->wasRecentlyCreated == true) {
             return redirect()->back()->with('alert', 'Ruta agregada exitosamente');
         }
