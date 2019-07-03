@@ -15,6 +15,6 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         $this->call(fakeDataSeeder::class);
         $this->call(AddBusSeeder::class);
-        //$this->call(MunicipiosSeeder::class);
+        $this->call(MunicipiosSeeder::class);
     }
 }

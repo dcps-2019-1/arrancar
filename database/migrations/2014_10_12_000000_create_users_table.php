@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('username')->unique();
-            $table->string('avatar')->default('default.jfif');
+            $table->string('avatar')->default('http://localhost:8000/uploads/avatars/default.jfif');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\URL;
 Use Image;
 Use User;
+
 class UserController extends Controller
 {
     //
@@ -15,6 +18,7 @@ class UserController extends Controller
         return view('user.profile',['user'=>$user]);
     }
 
+
     public function update_avatar(Request $request){
         $user = Auth::user();
         $request->validate([
@@ -22,13 +26,26 @@ class UserController extends Controller
         ]);
 
         if($request->hasFile("avatar")){
-            $avatar=$request->file("avatar");
-            $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(300,300)->save(public_path("/uploads/avatars" .$avatarName));
-            $user->avatar=$avatarName;
-            $user->save();
-            return back()
-                ->with('success','You have successfully upload image.');
+            if(Input::hasFile("avatar")){
+                $file=Input::file("avatar");
+                $file->move(public_path()."/uploads/avatars/",$file->getClientOriginalName());
+                $url=URL::to("/") ."/uploads/avatars/".$file->getClientOriginalName();
+                $user->avatar=$url;
+                $user->save();
+                //return back()
+                    //->with('success','You have successfully upload image.');
+                return view('user.profile',['user'=>$user]);
+            }
+
+            //$avatar=$request->file("avatar");
+            //$avatarName = $user->id.'_avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
+
+            //$file=Input::file("avatar");
+            //$file->move(public_path("uploads/avatars".$avatarName));
+            //Image::make($avatar)->resize(300,300)->save(public_path("/uploads/avatars" .$avatarName));
+            //$user->avatar=$avatarName;
+            //$user->save();
+
         }
 
     }

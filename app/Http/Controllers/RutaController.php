@@ -16,7 +16,7 @@ class RutaController extends Controller
     {
         $departamentos = Municipio::groupBy('departamento')->get();
 
-        return view('empresa.registrar-ruta')->with('departamentos', $departamentos);
+        return view('empresa.registrar-ruta',['departamentos'=>$departamentos,"user"=>Auth::user()]);
     }
 
     public function fetch(Request $request)

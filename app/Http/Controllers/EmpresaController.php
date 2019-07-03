@@ -12,12 +12,12 @@ class EmpresaController extends Controller
 {
     public function index()
     {
-        return view('empresa.inicio');
+        return view('empresa.inicio',["user"=>Auth::user()]);
     }
 
     public function vistaRegistrar()
     {
-        return view('empresa.registrar-conductor');
+        return view('empresa.registrar-conductor',["user"=>Auth::user()]);
     }
 
     public function  registrarConductores(){

@@ -31,7 +31,7 @@
 
             <div class="profile-header-container">
                 <div class="profile-header-img">
-                    <img class="rounded-circle" src="/uploads/avatars/{{ $user->avatar }}"/>
+                    <img class="rounded-circle" src="{{ $user->avatar }}" height="200" width="200"/>
                     <!-- badge -->
                     <br>
                     <br>

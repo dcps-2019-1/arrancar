@@ -21,7 +21,7 @@ Auth::routes();
 Route::get('/login', function (){return view('auth.login');})->name("login");
 Route::get('/register', function (){return view('auth.register');})->name("register");
 
-Route::get('/conductor', 'ConductorController@index')->name('conductor');
+Route::get('/conductor', 'ConductorController@index')->name('conductor')->middleware('auth', 'rol:3');;
 Route::get('/empresa', 'EmpresaController@index')->name('empresa')->middleware('auth', 'rol:2');
 
 //Dos urls para la misma ruta, una que por defecto lista, la otra para recibir la petición del formulario
@@ -39,16 +39,17 @@ Route::post('empresa/registrar-ruta/fetch2', 'RutaController@fetch')->name('ruta
 Route::post('empresa/registrar-ruta', 'RutaController@registrarRuta')->name('registrar_ruta')->middleware('auth', 'rol:2');
 
 //perfil del usuario
-Route::get('profile', 'UserController@profile');
-Route::post('profile', 'UserController@update_avatar');
+Route::get('profile', 'UserController@profile')->middleware('auth');
+Route::post('profile', 'UserController@update_avatar')->middleware('auth');
 
-
+//¿¿???
 Route::view('/empresa/ListaConductores', 'empresa.ListaConductores');
-Route::view('/empresa/consultar-informacion', 'empresa.consultar-informacion');
+//Route::view('/empresa/consultar-informacion', 'empresa.consultar-informacion');
+Route::get('/empresa/consultar-informacion',"ConsultarController@consultas")->name("consultas");
 
 Route::view('/empresa/ListaBuses', 'empresa.ListaBuses');
 
-
+//listar conductores, listar buses
 Route::get('/empresa/ListaConductores', 'ConsultarController@listarConductores');
 Route::get('/empresa/ListaBuses', 'ConsultarController@listarBuses');
 

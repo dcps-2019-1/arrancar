@@ -16,7 +16,11 @@
             <a class="nav-link" href={{route("programar_mantenimiento")}}><h5>Programar mantenimiento</h5></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/empresa/consultar-informacion"><h5>Consultar información</h5></a>
+            <a class="nav-link" href={{route("consultas")}}><h5>Consultar información</h5></a>
+        </li>
+
+        <li class="nav-item">
+            <img src="{{$user->avatar}}" alt="bla" height="50" width="100">
         </li>
     </ul>
 </div>
