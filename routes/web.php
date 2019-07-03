@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +11,10 @@
 */
 
 Route::get('/', function () {
+    if(Auth::user()->rol == 2)
+    {
+        return redirect('/empresa');
+    }
     return view('home');
 });
 
