@@ -7,7 +7,7 @@ use App\Conductor;
 use App\User;
 use App\Bus;
 use App\Ruta;
-use App\Viaje;
+use App\Mantenimiento;
 
 class Empresa extends Model
 {
@@ -37,5 +37,10 @@ class Empresa extends Model
     public function viajes()
     {
         return $this->hasMany(Viaje::class);
+    }
+
+    public function mantenimientos()
+    {
+        return $this->hasMany(Mantenimiento::class);
     }
 }

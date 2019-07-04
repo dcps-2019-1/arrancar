@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Bus;
 use App\Conductor;
 use App\Empresa;
+use App\Mantenimiento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -31,7 +32,12 @@ class ConsultarController extends Controller
     }
 
 
-
+    public function listarMantenimientos(){
+        //obtengo id de empresa loggeada
+        $empresa = Empresa::where('user_id', Auth::user()->id)->first();
+        $mantenimientos = Mantenimiento::where('empresa_id', $empresa->id)->get();
+        return view('empresa.ListaMantenimientos',['mantenimientos'=> $mantenimientos,"user"=>Auth::user()]);
+    }
 
 
 

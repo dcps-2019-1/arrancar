@@ -10,7 +10,7 @@
     <div class="list-group">
         <a href="ListaConductores" class="list-group-item list-group-item-action">Consultar conductores</a>
         <a href="ListaBuses" class="list-group-item list-group-item-action">Consultar buses</a>
-        <a href="#" class="list-group-item list-group-item-action">Consultar mantenimientos</a>
+        <a href="ListaMantenimientos" class="list-group-item list-group-item-action">Consultar mantenimientos</a>
 
     </div>
         </div>
