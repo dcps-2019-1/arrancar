@@ -192,7 +192,7 @@
                 </div>
             @else
             <div class="sidebar-header2">
-                <img src="{{$user->avatar}}" class="img2">
+                <img src="{{ auth::user()->avatar }}" class="img2">
             </div>
             @endguest
 
@@ -202,6 +202,7 @@
                 @if (auth::user()->rol == 2)
                 @include('empresa.sidebar')
                 @elseif(auth::user()->rol == 3)
+                @include('conductor.sidebar')
                 @endif
             @endguest
         </nav>
@@ -233,7 +234,7 @@
                                 @else
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                        <img src="{{$user->avatar}}" class="img1">
+                                        <img src="{{auth::user()->avatar}}" class="img1">
                                     </a>
                                 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -262,6 +263,11 @@
                         @if (auth::user()->rol == 2)
                         @include('empresa.nav')
                         @elseif(auth::user()->rol == 3)
+                        @include('conductor.nav')
+                        @elseif(auth::user()->rol == 0)
+                        @include('cliente.nav')
+                        @elseif(auth::user()->rol == 1)
+                        @include('administrador.nav')
                         @endif
                         @endauth
                     </div>
