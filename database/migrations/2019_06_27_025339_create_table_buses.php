@@ -19,6 +19,7 @@ class CreateTableBuses extends Migration
 
             $table->string('placa',32)->index();
             $table->unsignedBigInteger("empresa_id");
+            $table->foreign("empresa_id")->references("id")->on("empresas");
             $table->unsignedInteger('numero_sillas');
             //cambia sí el bus está en mantenimiento
             $table->string('estado')->default("disponible");
