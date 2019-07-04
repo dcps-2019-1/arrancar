@@ -43,7 +43,7 @@ class MantenimientoController extends Controller
             "fecha_entrada.required"=>"La fecha de entrada es requerida",
             "fecha_entrada.date"=>"Se debe especificar un formato de fecha",
             "fecha_entrada.after_or_equal"=>"La fecha de entrada debe ser mayor o igual al día de hoy",
-            "fecha_entrada.before_or_equal"=>"La fecha de entrada debe antes de la fecha de salida",
+            "fecha_entrada.before_or_equal"=>"La fecha de entrada debe ser antes de la fecha de salida",
             "fecha_salida.required"=>"La fecha de salida es requerida",
             "fecha_salida.date"=>"Se debe especificar un formato de fecha",
             "fecha_salida.after_or_equal"=>"La fecha de salida debe ser despues de la fecha de entrada",
