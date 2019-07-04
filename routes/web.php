@@ -16,6 +16,9 @@ Route::get('/', function () {
     {
         return redirect('/empresa');
     }
+    if (Auth::check() && Auth::user()->rol == 1) {
+        return redirect('/administrador');
+    }
     return view('home');
 });
 
@@ -25,7 +28,12 @@ Auth::routes();
 Route::get('/login', function (){return view('auth.login');})->name("login");
 Route::get('/register', function (){return view('auth.register');})->name("register");
 
-Route::get('/conductor', 'ConductorController@index')->name('conductor')->middleware('auth', 'rol:3');;
+Route::get('/administrador', 'AdministradorController@index')->name('administrador')->middleware('auth', 'rol:1');
+
+Route::get('/conductor', 'ConductorController@index')->name('conductor')->middleware('auth', 'rol:3');
+
+Route::get('/cliente', "ClienteController@index")->name('cliente')->middleware('auth', 'rol:0');
+
 Route::get('/empresa', 'EmpresaController@index')->name('empresa')->middleware('auth', 'rol:2');
 
 //Dos urls para la misma ruta, una que por defecto lista, la otra para recibir la petición del formulario

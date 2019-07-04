@@ -7,6 +7,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Conductor;
 use App\Empresa;
+use App\Administrador;
+use App\Cliente;
 
 class User extends Authenticatable
 {
@@ -45,6 +47,16 @@ class User extends Authenticatable
     public function conductores()
     {
         return $this->hasMany(Conductor::class);
+    }
+
+    public function clientes()
+    {
+        return $this->hasMany(Cliente::class);
+    }
+
+    public function administradores()
+    {
+        return $this->hasMany(Administrador::class);
     }
 
     public function hasRol($rol)
