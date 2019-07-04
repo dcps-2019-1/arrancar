@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\URL;
-Use Image;
 Use User;
 
 class UserController extends Controller
