@@ -54,8 +54,8 @@ class MantenimientoController extends Controller
         //Con eso también controlo que no mande un bus dos veces al mismo tiempo a mantenimiento.
 
         //Después de validar
-        
-        $mantenimiento = Mantenimiento::create(["bus_id"=>$datos["placa"],"fecha_entrada"=>$datos["fecha_entrada"],
+        $empresa = Empresa::where('user_id', Auth::user()->id)->first();
+        $mantenimiento = Mantenimiento::create(["bus_id"=>$datos["placa"],"empresa_id"=>$empresa['id'],"fecha_entrada"=>$datos["fecha_entrada"],
             "fecha_salida"=>$datos["fecha_salida"]]);
         if ($mantenimiento->wasRecentlyCreated == true) {
             return redirect()->back()->with('alert', 'Mantenimiento agregado exitosamente');

@@ -53,6 +53,9 @@ Route::get('/empresa/consultar-informacion',"ConsultarController@consultas")->na
 
 Route::view('/empresa/ListaBuses', 'empresa.ListaBuses');
 
+Route::view('/empresa/ListaMantenimientos','empresa.ListaMantenimientos');
+Route::get('/empresa/ListaMantenimientos', 'ConsultarController@listarMantenimientos');
+
 //listar conductores, listar buses
 Route::get('/empresa/ListaConductores', 'ConsultarController@listarConductores');
 Route::get('/empresa/ListaBuses', 'ConsultarController@listarBuses');

@@ -16,6 +16,7 @@ class CreateMantenimientoTable extends Migration
         //mantenimiento posee un codigo, una clave foranea de placa  bus, fecha de entrada y fecha de salida
         Schema::create('mantenimientos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('empresa_id');
             $table->string("bus_id",32)->index();
             $table->foreign("bus_id")->references("placa")->on("buses");
             $table->date("fecha_entrada");
