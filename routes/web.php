@@ -1,4 +1,5 @@
 <?php
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    if(Auth::user()->rol == 2)
+    if(Auth::check() && Auth::user()->rol == 2)
     {
         return redirect('/empresa');
     }
