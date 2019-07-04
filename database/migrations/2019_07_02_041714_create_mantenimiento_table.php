@@ -17,6 +17,7 @@ class CreateMantenimientoTable extends Migration
         Schema::create('mantenimientos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('empresa_id');
+            $table->foreign("empresa_id")->references("id")->on("empresas");
             $table->string("bus_id",32)->index();
             $table->foreign("bus_id")->references("placa")->on("buses");
             $table->date("fecha_entrada");

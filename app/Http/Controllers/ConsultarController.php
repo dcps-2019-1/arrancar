@@ -20,14 +20,14 @@ class ConsultarController extends Controller
     public function listarConductores(){
 
         $empresa = Empresa::where('user_id', Auth::user()->id)->first();
-        $conductores = Conductor::where('empresa_id', $empresa->id)->get();
-        return view('empresa.ListaConductores',['empresa'=> $empresa,"user"=>Auth::user()]);
+        $conductores = $empresa->conductores;
+        return view('empresa.ListaConductores',['conductores'=> $conductores]);
     }
 
     public function listarBuses(){
         //obtengo id de empresa loggeada
         $empresa = Empresa::where('user_id', Auth::user()->id)->first();
-        $buses = Bus::where('empresa_id', $empresa->id)->get();
+        $buses = $empresa->buses;
         return view('empresa.ListaBuses',["buses"=>$buses,"title"=>"Registrar Buses","user"=>Auth::user()]);
     }
 
@@ -35,11 +35,23 @@ class ConsultarController extends Controller
     public function listarMantenimientos(){
         //obtengo id de empresa loggeada
         $empresa = Empresa::where('user_id', Auth::user()->id)->first();
-        $mantenimientos = Mantenimiento::where('empresa_id', $empresa->id)->get();
-        return view('empresa.ListaMantenimientos',['mantenimientos'=> $mantenimientos,"user"=>Auth::user()]);
+        $mantenimientos = $empresa->mantenimientos;
+        return view('empresa.ListaMantenimientos',['mantenimientos'=> $mantenimientos]);
     }
 
+    public function listarRutas()
+    {
+        $empresa = Empresa::where('user_id', Auth::user()->id)->first();
+        $rutas = $empresa->rutas;
+        return view('empresa.ListaRutas', ['rutas' => $rutas]);
+    }
 
+    public function listarViajes()
+    {
+        $empresa = Empresa::where('user_id', Auth::user()->id)->first();
+        $viajes = $empresa->viajes;
+        return view('empresa.ListaViajes', ['viajes' => $viajes]);
+    }
 
 }
 

@@ -55,18 +55,18 @@ Route::get('profile', 'UserController@profile')->middleware('auth');
 Route::post('profile', 'UserController@update_avatar')->middleware('auth');
 
 //¿¿???
-Route::view('/empresa/ListaConductores', 'empresa.ListaConductores');
+Route::view('/empresa/ListaConductores', 'empresa.ListaConductores')->middleware('auth', 'rol:2');
 //Route::view('/empresa/consultar-informacion', 'empresa.consultar-informacion');
-Route::get('/empresa/consultar-informacion',"ConsultarController@consultas")->name("consultas");
+Route::get('/empresa/consultar-informacion',"ConsultarController@consultas")->name("consultas")->middleware('auth', 'rol:2');
 
-Route::view('/empresa/ListaBuses', 'empresa.ListaBuses');
-
-Route::view('/empresa/ListaMantenimientos','empresa.ListaMantenimientos');
-Route::get('/empresa/ListaMantenimientos', 'ConsultarController@listarMantenimientos');
+Route::get('/empresa/ListaMantenimientos', 'ConsultarController@listarMantenimientos')->middleware('auth', 'rol:2');
 
 //listar conductores, listar buses
-Route::get('/empresa/ListaConductores', 'ConsultarController@listarConductores');
-Route::get('/empresa/ListaBuses', 'ConsultarController@listarBuses');
+Route::get('/empresa/ListaConductores', 'ConsultarController@listarConductores')->middleware('auth', 'rol:2');
+Route::get('/empresa/ListaBuses', 'ConsultarController@listarBuses')->middleware('auth', 'rol:2');
+
+Route::get('/empresa/ListaRutas', 'ConsultarController@listarRutas')->middleware('auth', 'rol:2');
+Route::get('/empresa/ListaViajes', 'ConsultarController@listarViajes')->middleware('auth', 'rol:2');
 
 Route::get('/empresa/programar-mantenimiento', 'MantenimientoController@listar')->name("programar_mantenimiento")->middleware('auth', 'rol:2');
 Route::post('/empresa/programar-mantenimiento', 'MantenimientoController@createMantenimiento')->name("create_mantenimiento")->middleware('auth', 'rol:2');

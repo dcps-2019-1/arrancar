@@ -11,7 +11,8 @@
         <a href="ListaConductores" class="list-group-item list-group-item-action">Consultar conductores</a>
         <a href="ListaBuses" class="list-group-item list-group-item-action">Consultar buses</a>
         <a href="ListaMantenimientos" class="list-group-item list-group-item-action">Consultar mantenimientos</a>
-
+        <a href="ListaRutas" class="list-group-item list-group-item-action">Consultar rutas</a>
+        <a href="ListaViajes" class="list-group-item list-group-item-action">Consultar viajes</a>
     </div>
         </div>
     </div>

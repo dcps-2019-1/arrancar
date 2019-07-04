@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Empresa;
 use App\Conductor;
+use App\Ruta;
 
 class Viaje extends Model
 {
@@ -24,5 +25,10 @@ class Viaje extends Model
     public function bus()
     {
         return $this->belongsTo(Bus::class);
+    }
+
+    public function ruta()
+    {
+        return $this->belongsTo(Ruta::class);
     }
 }
