@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Empresa;
+use App\Rules\CodigoBus;
 use Illuminate\Http\Request;
 use App\Bus;
 use File;
@@ -26,7 +27,7 @@ class BusController extends Controller
         $placafin=strtoupper($letras).$numeros;
         $datos=request()["placa"]=$placafin;
         $datos=request()->validate(["placa"=> ["required","unique:buses,placa","regex:/[aA-zZ][aA-zZ][aA-zZ][\W|\s]{0,1}[0-9][0-9][0-9]/"],
-            "codigo"=>"required|numeric|min:1",
+            "codigo"=>["required","numeric","min:1", new CodigoBus],
             "numero_sillas"=>"required|numeric|min:1",
             "categoria"=>"required|string"],["placa.unique"=>"La placa del bus ya existe en la base de datos",
             "placa.required"=>"La placa es requerida",
