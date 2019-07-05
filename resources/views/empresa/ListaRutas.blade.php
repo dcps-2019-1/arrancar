@@ -12,6 +12,12 @@
                 </tr>
             </thead>
             <tbody>
+                @if (count($rutas) == 0)
+                
+                <div class="container text-center font-weight-bold text-danger">No existen rutas registrados</div>
+                <br>
+                
+                @endif
                 @foreach ($rutas as $ruta)
                     <tr>
                         <td> {{ $ruta->codigo }} </td>

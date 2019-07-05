@@ -14,6 +14,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if (count($conductores) == 0)
+                    
+                    <div class="container text-center font-weight-bold text-danger">No existen conductores registrados</div>
+                    <br>
+                    
+                    @endif
                     @foreach ($conductores as $conductor)
                     <tr>
                         <td> {{ $conductor->nombre }} </td>

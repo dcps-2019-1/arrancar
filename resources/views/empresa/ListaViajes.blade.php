@@ -14,6 +14,12 @@
                 </tr>
             </thead>
             <tbody>
+                @if (count($viajes) == 0)
+                
+                <div class="container text-center font-weight-bold text-danger">No existen viajes registrados</div>
+                <br>
+                
+                @endif
                 @foreach ($viajes as $viaje)
                     <tr>
                         <td> {{ $viaje->fecha }} </td>

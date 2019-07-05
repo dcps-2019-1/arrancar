@@ -16,6 +16,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if (count($buses) == 0)
+                        
+                    <div class="container text-center font-weight-bold text-danger">No existen buses registrados</div>
+                    <br>
+
+                    @endif
                     @foreach ($buses as $bus)
                     <tr>
                         <td> {{ $bus->placa }} </td>

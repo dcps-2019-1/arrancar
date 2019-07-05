@@ -12,6 +12,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if (count($mantenimientos) == 0)
+                    
+                    <div class="container text-center font-weight-bold text-danger">No existen mantenimientos registrados</div>
+                    <br>
+                    
+                    @endif
                     @foreach ($mantenimientos as $mantenimiento)
                     <tr>
                         <td> {{ $mantenimiento->bus_id }} </td>
