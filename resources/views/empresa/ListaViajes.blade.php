@@ -3,7 +3,7 @@
     
     <div class="container">
         <table class="table table-light">
-            <thead class="thead-light">
+            <thead class="color text-light">
                 <tr>
                     <th>Fecha</th>
                     <th>Hora</th>
