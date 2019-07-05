@@ -55,6 +55,15 @@ class MantenimientoController extends Controller
 
         //Después de validar
         $empresa = Empresa::where('user_id', Auth::user()->id)->first();
+        $mantenimiento2 = Mantenimiento::where('bus_id', $datos["placa"])
+                                        ->where('fecha_entrada', $datos["fecha_entrada"])
+                                        ->where('fecha_salida', $datos["fecha_salida"])
+                                        ->first();
+        
+        if ($mantenimiento2) {
+            return redirect()->back()->with('alert', "Ya existe un mantenimiento programado para estas fechas");
+        }
+
         $mantenimiento = Mantenimiento::create(["bus_id"=>$datos["placa"],"empresa_id"=>$empresa['id'],"fecha_entrada"=>$datos["fecha_entrada"],
             "fecha_salida"=>$datos["fecha_salida"]]);
         if ($mantenimiento->wasRecentlyCreated == true) {
