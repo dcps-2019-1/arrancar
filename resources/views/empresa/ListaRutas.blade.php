@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <table class="table table-light">
-            <thead class="thead-light">
+            <thead class="color text-light">
                 <tr>
                     <th>Código</th>
                     <th>Municipio salida</th>

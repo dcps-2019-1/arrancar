@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col">
             <table class="table table-light">
-                <thead class="thead-light">
+                <thead class="color text-light">
                     <tr>
                         <th scope="col">Placa</th>
                         <th scope="col">Codigo</th>
