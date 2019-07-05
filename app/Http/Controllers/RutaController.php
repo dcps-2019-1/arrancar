@@ -59,6 +59,15 @@ class RutaController extends Controller
             "municipio_destino"=>" El municipio de llegada no existe",
         ]);
         $empresa = Empresa::where('user_id', Auth::user()->id)->first();
+        $ruta2 = Ruta::where('municipio_origen', $datos["municipio_origen"])
+            ->where('departamento_origen', $datos["departamento_origen"])
+            ->where('municipio_destino', $datos["municipio_destino"])
+            ->where('departamento_destino', $datos["departamento_destino"])
+            ->where('empresa_id', $empresa->id)
+            ->first();
+        if ($ruta2) {
+            return redirect()->back()->with('alert', 'Ruta ya existe en la base de datos');
+        }
         $ruta = Ruta::create(['empresa_id'=>$empresa->id, "codigo"=>$datos["codigo"], "municipio_origen"=>$datos["municipio_origen"], "departamento_origen"=>$datos["departamento_origen"]
         , "municipio_destino"=>$datos["municipio_destino"], "departamento_destino"=>$datos["departamento_destino"]]);
         if ($ruta->wasRecentlyCreated == true) {
