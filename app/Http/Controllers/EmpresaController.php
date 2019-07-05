@@ -27,7 +27,7 @@ class EmpresaController extends Controller
             "email"=>"required|unique:users,email|email",
             "username"=>"required|unique:users,username",
             "password"=>"required|min:6",
-            "telefono"=>"required"],["nombre.required"=>"El campo nombre es obligatorio",
+            "telefono"=>"required|numeric"],["nombre.required"=>"El campo nombre es obligatorio",
                 "cedula.numeric"=>"El campo cédula debe ser númerico",
                 "cedula.required"=>"El campo cédula es obligatorio",
                 "cedula.unique"=>"Esta cédula ya está asociada a otro conductor",
@@ -36,6 +36,7 @@ class EmpresaController extends Controller
                 "password.required"=>"El campo password es obligatorio",
                 "password.min"=>"La contraseña debe tener mínimo 6 caracteres",
                 "telefono.required"=>"El campo teléfono es obligatorio",
+            "telefono.numeric"=>"El numero de teléfono debe ser numerico",
             "email.required"=>"El campo email es obligatorio",
             "email.unique"=>"El email ya existe en el sistema",
             "email.email"=>"El email no tiene formato válido"]);
