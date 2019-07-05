@@ -3,17 +3,9 @@
     <li>
         <a href="/profile"><i class="fas fa-user-edit"></i>
             Perfil de usuario</a>
-
-    </li>
-
-    <li>
-        <a href="/empresa/consultar-informacion"><i class="fas fa-question-circle"></i> Consultar información</a>
     </li>
 
 </ul>
-
-
-
 <ul class="list-unstyled">
     <li>
         <a href="{{ route('logout') }}"

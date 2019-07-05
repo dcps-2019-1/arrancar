@@ -36,7 +36,9 @@ Route::get('/register', function (){return view('auth.register');})->name("regis
 
 Route::get('/administrador', 'AdministradorController@index')->name('administrador')->middleware('auth', 'rol:1');
 
+//conductor
 Route::get('/conductor', 'ConductorController@index')->name('conductor')->middleware('auth', 'rol:3');
+Route::get('/conductor/consultar-viajes', 'ConductorController@consultaViajes')->name('consulta_viajes')->middleware('auth', 'rol:3');
 
 //
 Route::get('/cliente', "ClienteController@index")->name('cliente')->middleware('auth', 'rol:0');
