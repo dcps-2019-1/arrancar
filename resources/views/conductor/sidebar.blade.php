@@ -5,7 +5,7 @@
             Perfil de usuario</a>
     </li>
     <li>
-        <a href="/empresa/registrar-conductor"><i class="fas fa-user-plus"></i> Consultar viajes programados</a>
+        <a href={{@route("consulta_viajes")}}><i class="fas fa-user-plus"></i> Consultar viajes programados</a>
     </li>
 </ul>
 <ul class="list-unstyled">

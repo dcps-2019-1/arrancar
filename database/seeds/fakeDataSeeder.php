@@ -43,19 +43,11 @@ class fakeDataSeeder extends Seeder
         Administrador::create(["user_id"=>$userfakeadministrador->id]);
 
         $userfakeconductor=User::create(["username"=>"conductor1","email"=>"conductor1@unal.edu.co","password"=>bcrypt("123456"),"telefono"=>2322345,"rol"=>3]);
-        $conductor=Conductor::create(["empresa_id"=>$empresa->id,"user_id"=>$userfakeconductor->id,"nombre"=>"Ivan Duque","cedula"=>234567]);
+        $conductor=Conductor::create(["empresa_id"=>1,"user_id"=>$userfakeconductor->id,"nombre"=>"Ivan Duque","cedula"=>234567]);
         //Seeder para meter conductores y empresas a la BD, así mismo, primero se debe crear el usuario en la tabla general.
-        for ($i = 1; $i <= 10; $i++) {
-
-            $newuserconductor = factory(User::class)->create(["rol" => 3]); // le envio rol 3, porque quiero crear conductores. Guardo
-            //el objeto User en un array porque necesito algunos datos de acá, para enviarlos a el factory de conductor.
-
-            $newuserempresa=factory(User::class)->create(["rol" => 2]);// 2 de empresa
-            //Acá llamo al factory de conductor, y le mando el parametro id del usuario que acabe de crear, su factory hace el resto
-            factory(Conductor::class)->create((["user_id" => $newuserconductor->id]));
-            factory(Empresa::class)->create((["user_id" => $newuserempresa->id]));
-
-        }
+        $userfakeconductor=User::create(["username"=>"conductor2","email"=>"conductor2@unal.edu.co","password"=>bcrypt("123456"),"telefono"=>23223345,"rol"=>3]);
+        $conductor=Conductor::create(["empresa_id"=>2,"user_id"=>$userfakeconductor->id,"nombre"=>"Andres Cepeda","cedula"=>253267]);
+        //Seeder para meter conductores y empresas a la BD, así mismo, primero se debe crear el usuario en la tabla general.
 
     }
 }
