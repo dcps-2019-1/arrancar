@@ -19,6 +19,12 @@ Route::get('/', function () {
     if (Auth::check() && Auth::user()->rol == 1) {
         return redirect('/administrador');
     }
+    if (Auth::check() && Auth::user()->rol == 0) {
+        return redirect('/cliente');
+    }
+    if (Auth::check() && Auth::user()->rol == 3) {
+        return redirect('/conductor');
+    }
     return view('home');
 });
 
@@ -32,6 +38,7 @@ Route::get('/administrador', 'AdministradorController@index')->name('administrad
 
 Route::get('/conductor', 'ConductorController@index')->name('conductor')->middleware('auth', 'rol:3');
 
+//
 Route::get('/cliente', "ClienteController@index")->name('cliente')->middleware('auth', 'rol:0');
 
 Route::get('/empresa', 'EmpresaController@index')->name('empresa')->middleware('auth', 'rol:2');
@@ -73,5 +80,5 @@ Route::post('/empresa/programar-mantenimiento', 'MantenimientoController@createM
 
 //Route::view('/empresa/consultar-informacion', 'empresa.consultar-informacion');
 
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
