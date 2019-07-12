@@ -203,6 +203,10 @@
                 @include('empresa.sidebar')
                 @elseif(auth::user()->rol == 3)
                 @include('conductor.sidebar')
+                @elseif(auth::user()->rol == 0)
+                @include('cliente.sidebar')
+                @else
+                @include('administrador.sidebar')
                 @endif
             @endguest
         </nav>
