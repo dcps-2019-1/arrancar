@@ -5,7 +5,7 @@
             Perfil de usuario</a>
     </li>
     <li>
-        <a href="/empresa/registrar-conductor"><i class="fas fa-user-plus"></i> Consultar viajes programados</a>
+        <a href="#"><i class="fas fa-user-plus"></i> Registrar empresa</a>
     </li>
 </ul>
 <ul class="list-unstyled">
