@@ -65,4 +65,46 @@ class EmpresaController extends Controller
         return redirect("/empresa/registrar-conductor");
 }
 
+public function  registrarEmpresa(){
+        return view("administrador.registroEmpresa",["user"=>Auth::user()]);
+
+}
+
+    public function  agregarEmpresa(){
+        $data=request()->validate(["nombre"=>"required","username"=>"required|unique:users,username",
+            "password"=>"required|min:6","email"=>"required|unique:users,email|email",
+            "representante"=>"required","telefono"=>"required|numeric", "nit"=>"required|unique:empresas,nit|numeric"],[
+                "nombre.required"=>"El nombre de la empresa es obligatorio","username.required"=>"El nombre de usuario es obligatorio",
+            "username.unique"=>"Este nombre de usuario ya está en uso","password.required"=>"La contraseña es obligatoria",
+            "password.min"=>"La contraseña debe tener mínimo 6 caracteres","email.required"=>"El email es obligatorio","email.unique"=>"El email
+            ya pertenece a otro usuario","email.email"=>"El formato del email no es valido","representante.required"=>"El representante es obligatorio",
+            "telefono.required"=>"El número de teléfono es obligatorio","telefono.numeric"=>"El teléfono debe de ser númerico","nit.required"=>"El nit es obligatorio",
+            "nit.unique"=>"El nit ya está asociado a otra empresa","nit.numeric"=>"El nit debe ser numerico"]);
+
+        //Primero se añade la empresa a la tabla de usuarios:
+        $nuevoUsuario=User::create(["username"=>$data["username"],
+            "password"=>bcrypt($data["password"]),
+            "telefono"=>$data["telefono"],
+            "email"=>$data["email"],
+            "rol"=>2]); //darle el rol de empresa
+
+        if ($nuevoUsuario->wasRecentlyCreated == true) {
+            $empresaid=$nuevoUsuario->id;
+            $nuevaempresa=Empresa::create(["user_id"=>$empresaid,
+                "nombre"=>$data["nombre"],
+                "representante-legal"=>$data["representante"],
+                "nit"=>$data["nit"]]);
+            if ($nuevaempresa->wasRecentlyCreated == true) {
+                return redirect()->back()->with('alert', 'Empresa agregada exitosamente');
+
+            }
+        }
+        return redirect("/admin/registrar-empresa");
+
+
+
+
+
+    }
+
 }
