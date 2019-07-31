@@ -19,13 +19,13 @@ class fakeDataSeeder extends Seeder
     public function run()
     {
         //control de errores.
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+        //DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
         DB::table("users")->truncate();
         DB::table("conductores")->truncate();
         DB::table("empresas")->truncate();
         DB::table('administradores')->truncate();
         DB::table('clientes')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+        //DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
         //usuarios de prueba conductor y empresa:
 
         //empresa1
