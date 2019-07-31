@@ -84,3 +84,7 @@ Route::post('/empresa/programar-mantenimiento', 'MantenimientoController@createM
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Rutas de administrador
+//registrar empresa
+Route::get('/admin/registrar-empresa', 'EmpresaController@registrarEmpresa')->name("registro_empresa")->middleware('auth', 'rol:1');
+Route::post('/admin/registrar-empresa', 'EmpresaController@agregarEmpresa')->name("agregar_empresa")->middleware('auth', 'rol:1');

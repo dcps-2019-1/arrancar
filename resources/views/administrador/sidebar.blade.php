@@ -5,7 +5,12 @@
             Perfil de usuario</a>
     </li>
     <li>
-        <a href="#"><i class="fas fa-user-plus"></i> Registrar empresa</a>
+        <a href={{route("registro_empresa")}}><i class="fas fa-user-plus"></i> Registrar empresa</a>
+    </li>
+
+    <li>
+        <a href="#"><i class="fas fa-user-minus"></i> Eliminar empresa</a>
+
     </li>
 </ul>
 <ul class="list-unstyled">
