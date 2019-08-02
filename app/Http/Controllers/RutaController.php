@@ -14,7 +14,10 @@ class RutaController extends Controller
 {
     public function index()
     {
-        $departamentos = Municipio::groupBy('departamento')->get();
+        $departamentos = DB::table('municipios')
+            ->select('departamento')
+            ->distinct()
+            ->get();
 
         return view('empresa.registrar-ruta',['departamentos'=>$departamentos,"user"=>Auth::user()]);
     }
@@ -25,12 +28,12 @@ class RutaController extends Controller
         $value = $request->get('value');
         $dependent2 = 'municipio';
         $data = DB::table('municipios')
+            ->select('municipio')
             ->where($select, $value)
-            ->groupBy($dependent2)
             ->get();
         $output = '<option value="">' . ucfirst($dependent2) . '</option>';
         foreach ($data as $row) {
-            $output .= '<option value="' . $row->$dependent2 . '">' . $row->$dependent2 . '</option>';
+            $output .= '<option value="' . $row->municipio . '">' . $row->municipio . '</option>';
         }
         echo $output;
     }

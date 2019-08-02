@@ -24,7 +24,7 @@ class CreateViajesTable extends Migration
             $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->unsignedBigInteger('conductor_id');
             $table->foreign('conductor_id')->references('id')->on('conductores');
-            $table->string('bus_placa', 32)->index();
+            $table->string('bus_placa', 32);
             $table->foreign('bus_placa')->references('placa')->on('buses');
             $table->timestamps();
         });
