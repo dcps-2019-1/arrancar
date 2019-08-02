@@ -11,6 +11,7 @@ class Bus extends Model
     //
     protected $table="buses";
     protected $primaryKey="placa";
+    public $incrementing = false;
     protected $fillable=["codigo","empresa_id","numero_sillas","placa","categoria"];
 
     public function empresa()
