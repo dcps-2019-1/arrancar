@@ -14,9 +14,15 @@ class AddBusSeeder extends Seeder
     {
         //
         //control de errores.
-        //DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-        DB::table("buses")->truncate();
-        //DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+        if(env("DB_CONNECTION","mysql")){
+            DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+            DB::table("buses")->truncate();
+            DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+        }
+        else{
+            DB::table("buses")->truncate();
+        }
+
 
         //factory(Bus::class,5)->create(["empresa_id"=>1]);
         Bus::create(["codigo"=>"610","placa"=>"JKD123","empresa_id"=>1,"numero_sillas"=>60,"categoria"=>"premium"]);
