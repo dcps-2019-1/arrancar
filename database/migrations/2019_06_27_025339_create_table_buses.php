@@ -17,7 +17,7 @@ class CreateTableBuses extends Migration
             //codigo hace referencia al código que le genera internamente la compañia
             $table->unsignedInteger('codigo');
 
-            $table->string('placa',32)->index();
+            $table->string('placa')->primary();
             $table->unsignedBigInteger("empresa_id");
             $table->foreign("empresa_id")->references("id")->on("empresas");
             $table->unsignedInteger('numero_sillas');

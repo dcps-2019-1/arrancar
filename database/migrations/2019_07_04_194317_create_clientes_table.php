@@ -20,7 +20,7 @@ class CreateClientesTable extends Migration
             $table->string('nombre');
             $table->string('medio_pago');
             $table->integer('contacto_emergencia');
-            $table->integer('cedula');
+            $table->bigInteger('cedula');
             $table->timestamps();
         });
     }

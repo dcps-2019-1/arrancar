@@ -337,8 +337,9 @@
                                 $('#municipio_origen').html(result);
                             }
                             else $('#municipio_destino').html(result);
+                        }, error:function(){
+                        alert("error!!!!");
                         }
-                        
                     })
                 }
             });
