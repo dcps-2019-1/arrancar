@@ -45,7 +45,7 @@
         left: -250px;
         height: 100vh;
         z-index: 999;
-        background: #3399f3;
+        background: #03a9f4;
         color: #fff;
         transition: all 0.3s;
         overflow-y: scroll;
@@ -61,7 +61,7 @@
         height: 35px;
         line-height: 35px;
         text-align: center;
-        background: #3399f3;
+        background: #03a9f4;
         position: absolute;
         top: 10px;
         right: 10px;
@@ -93,12 +93,12 @@
         
         #sidebar .sidebar-header {
         padding: 20px;
-        background: #0080ff;
+        background: #03a9f4;
         }
 
         #sidebar .sidebar-header2 {
             padding: 20px;
-            background: #0080ff;
+            background: #03a9f4;
         }
         
         #sidebar ul.components {
@@ -118,17 +118,17 @@
         }
         
         #sidebar ul li a:hover {
-        color: #3399f3;
+        color: #03a9f4;
         background: #fff;
         }
         
         #navbar a {
             color: white;
-            background: #3399f3;
+            background: #03a9f4;
         }
 
         #navbar ul li a:hover {
-            color:#3399f3;
+            color:#03a9f4;
             background: white;
         }
 
@@ -139,11 +139,11 @@
         }
 
         .color {
-            background: #3399f3;
+            background: #03a9f4;
         }
 
         .texto-inside {
-            color: #3399f3;
+            color: #03a9f4;
         }
         .content {
         width: 100%;
@@ -154,11 +154,11 @@
 
         .borde{
             padding: 3px 10px;
-            background: #3399f3;
+            background: #03a9f4;
         }
 
         .btn-subir {
-            background: #3399f3;
+            background: #03a9f4;
             border-radius: 0px;;
         }
 
