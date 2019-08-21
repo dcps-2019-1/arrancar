@@ -84,7 +84,8 @@ class ClienteController extends Controller
         else{
             dd("hola, va bien");
         }
-
+    //FALTA TERMINAR ESTA PARTE, YA TENGO LOS VIAJES DE IDA Y REGRESO, FALTA CUADRAR SI SOLO SE ENCONTRÓ UNO, SI LOS DOS Y COMO
+        //PRESENTARLOS AL USUARIO
 
 
 
