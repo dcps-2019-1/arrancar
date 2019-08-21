@@ -88,3 +88,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 //registrar empresa
 Route::get('/admin/registrar-empresa', 'EmpresaController@registrarEmpresa')->name("registro_empresa")->middleware('auth', 'rol:1');
 Route::post('/admin/registrar-empresa', 'EmpresaController@agregarEmpresa')->name("agregar_empresa")->middleware('auth', 'rol:1');
+Route::get('/admin/borrar-empresa', 'EmpresaController@borrarEmpresa')->name("borrar_empresa")->middleware('auth', 'rol:1');
+Route::delete('/admin/borrar-empresa', 'EmpresaController@borrar')->name("borrado")->middleware('auth', 'rol:1');
+
+//clientes
+Route::get('/cliente/consultar', 'clienteController@mostrar')->name("consultar_viaje")->middleware('auth', 'rol:0');
+Route::post('/cliente/consultar', 'ClienteController@consulta')->name("consulta")->middleware('auth', 'rol:0');
+Route::post('cliente/consultar/fetch2', 'clienteController@fetch')->name("clientecontroller.fetch")->middleware('auth', 'rol:0');

@@ -4,6 +4,10 @@
         <a href="/profile"><i class="fas fa-user-edit"></i>
             Perfil de usuario</a>
     </li>
+    <li>
+        <a href={{route("consultar_viaje")}}><i class="fas fa-search"></i>
+            Consultar viaje</a>
+    </li>
 
 </ul>
 <ul class="list-unstyled">

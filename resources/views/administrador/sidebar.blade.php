@@ -9,7 +9,7 @@
     </li>
 
     <li>
-        <a href="#"><i class="fas fa-user-minus"></i> Eliminar empresa</a>
+        <a href={{route("borrar_empresa")}}><i class="fas fa-user-minus"></i> Eliminar empresa</a>
 
     </li>
 </ul>

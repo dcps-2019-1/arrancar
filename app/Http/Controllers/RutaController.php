@@ -21,6 +21,15 @@ class RutaController extends Controller
 
         return view('empresa.registrar-ruta',['departamentos'=>$departamentos,"user"=>Auth::user()]);
     }
+    public function consulta()
+
+    {
+        $departamentos = DB::table('municipios')
+            ->select('departamento')
+            ->distinct()
+            ->get();
+        return view('cliente.consultarViaje',["user"=>Auth::user(),"departamentos"=>$departamentos]);
+    }
 
     public function fetch(Request $request)
     {
