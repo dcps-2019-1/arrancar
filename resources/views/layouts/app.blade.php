@@ -337,10 +337,22 @@
                                 $('#municipio_origen').html(result);
                             }
                             else $('#municipio_destino').html(result);
-                        }, error:function(){
-                        alert("error!!!!");
                         }
-                    })
+                    });
+                    $.ajax({
+                        url:"{{ route('clientecontroller.fetch') }}",
+                        method:"POST",
+                        data:{value:value, _token:_token},
+                        success:function(result)
+                        {
+                            if (select == "departamento_origen") {
+                                $('#municipio_origen').html(result);
+                            }
+                            else $('#municipio_destino').html(result);
+                        }
+                    });
+
+
                 }
             });
             

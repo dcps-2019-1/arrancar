@@ -1,7 +1,7 @@
 <div class="collapse navbar-collapse">
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href={{route("consultar_viaje")}}>
                 <h5>Consultar viaje</h5>
             </a>
         </li>
