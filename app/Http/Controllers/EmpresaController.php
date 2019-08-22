@@ -118,6 +118,7 @@ public function  registrarEmpresa(){
 
         $data=request()->validate(["empresa"=>"required|exists:empresas,id"],["empresa.required"=>"El nombre de la empresa es requerido",
             "empresa.exists"=>"La empresa indicada no existe en el sistema"]);
+        //dd($data);
         //Obtengo la empresa
         $borrar=Empresa::where("id",$data["empresa"])->first();
         $borraraux=Empresa::where("id",$data["empresa"])->first();

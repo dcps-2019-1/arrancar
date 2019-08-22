@@ -20,10 +20,11 @@
                              @foreach($empresas as $empresa)
                                     <option value={{$empresa->id}}>{{$empresa->nombre}}</option>
                              @endforeach
+
+                            </select>
                             @if ($errors->has('empresa'))
                                 <p class="text-danger">{{ $errors->first('empresa') }}</p>
                             @endif
-                            </select>
                         </div>
 
                         <br>
