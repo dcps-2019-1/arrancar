@@ -95,3 +95,4 @@ Route::delete('/admin/borrar-empresa', 'EmpresaController@borrar')->name("borrad
 Route::get('/cliente/consultar', 'clienteController@mostrar')->name("consultar_viaje")->middleware('auth', 'rol:0');
 Route::post('/cliente/consultar', 'ClienteController@consulta')->name("consulta")->middleware('auth', 'rol:0');
 Route::post('cliente/consultar/fetch2', 'clienteController@fetch')->name("clientecontroller.fetch")->middleware('auth', 'rol:0');
+Route::post('cliente/consultar/comprar', 'clienteController@compra')->name("comprar")->middleware('auth', 'rol:0');

@@ -50,8 +50,11 @@ class ViajeController extends Controller
         ]);
 
         $empresa = Empresa::where('user_id', Auth::id())->first();
+        $puestos=Bus::where("placa",$datos["bus"])->first();
+        $puestos=$puestos->numero_sillas;
         $viaje = Viaje::create(["fecha"=>$datos["fecha"], "hora"=>$datos["hora"], "precio"=>$datos["precio"], "ruta_id"=>$datos["ruta"]
-        , "empresa_id"=>$empresa->id, "conductor_id"=>$datos["conductor"], "bus_placa"=>$datos["bus"]]);
+        , "empresa_id"=>$empresa->id, "conductor_id"=>$datos["conductor"], "bus_placa"=>$datos["bus"],"puestos_disponibles"=>$puestos]);
+
         if ($viaje->wasRecentlyCreated == true) {
             return redirect()->back()->with('alert', 'Viaje agregado exitosamente');
         }

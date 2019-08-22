@@ -26,6 +26,7 @@ class CreateViajesTable extends Migration
             $table->foreign('conductor_id')->references('id')->on('conductores');
             $table->string('bus_placa', 32);
             $table->foreign('bus_placa')->references('placa')->on('buses');
+            $table->unsignedInteger("puestos_disponibles");
             $table->timestamps();
         });
     }
