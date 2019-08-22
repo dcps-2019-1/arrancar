@@ -4,8 +4,10 @@
 <div class="container">
     <form action={{route("comprar")}} method="POST">
     <table class="table table-light">
-
-        <h2 class="display-5"> Viaje de ida</h2>
+        <div class="container">
+            <h2 class="display-5 texto-inside"> Viajes de ida</h2>
+            
+        </div>
         <thead class="color text-light">
         <tr>
             <th>Fecha</th>
@@ -42,7 +44,7 @@
 <br>
 
     <table class="table table-light">
-        <h2 class="display-5"> Viaje de regreso</h2>
+        <h2 class="display-5 texto-inside"> Viajes de regreso</h2>
         <thead class="color text-light">
         <tr>
             <th>Fecha</th>
