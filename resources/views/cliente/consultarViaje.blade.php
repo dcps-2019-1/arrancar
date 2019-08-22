@@ -89,6 +89,15 @@
                                 </div>
                             </div>
 
+                        <div class="row">
+                            <div class="col form-group">
+                                <label for="cantidad" class="text-light">Cantidad de viajeros *</label>
+                                <input type="number" name="cantidad" value="{{ old('cantidad') }}" class="form-control">
+                                @if ($errors->has('cantidad'))
+                                    <p class="text-danger">{{ $errors->first('cantidad') }}</p>
+                                @endif
+                            </div>
+                        </div>
 
                         <br>
                         <p class="text-light">* Campos obligatorios</p>
