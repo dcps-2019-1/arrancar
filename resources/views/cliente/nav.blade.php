@@ -11,6 +11,11 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href={{route("cancelarViaje")}}>
+                <h5>Cancelar viaje</h5>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="#">
                 <h5>Perfil de usuario</h5>
             </a>
