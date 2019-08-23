@@ -351,6 +351,18 @@
                             else $('#municipio_destino').html(result);
                         }
                     });
+                    $.ajax({
+                        url:"{{ route('invitadocontroller.fetch') }}",
+                        method:"POST",
+                        data:{value:value, _token:_token},
+                        success:function(result)
+                        {
+                            if (select == "departamento_origen") {
+                                $('#municipio_origen').html(result);
+                            }
+                            else $('#municipio_destino').html(result);
+                        }
+                    });
 
 
                 }

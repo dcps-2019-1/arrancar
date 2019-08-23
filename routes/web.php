@@ -25,8 +25,13 @@ Route::get('/', function () {
     if (Auth::check() && Auth::user()->rol == 3) {
         return redirect('/conductor');
     }
-    return view('home');
+
+    return redirect()->route("invitado");
 });
+//invitado
+Route::get('/invitado', 'invitadoController@index')->name('invitado');
+Route::post('invitado/consultar/fetch2', 'invitadoController@fetch')->name("invitadocontroller.fetch");
+Route::post('invitado/consultar', 'invitadoController@consulta')->name("consulta_invitado");
 
 
 
@@ -37,7 +42,7 @@ Route::get('/register', function (){return view('auth.register');})->name("regis
 Route::get('/administrador', 'AdministradorController@index')->name('administrador')->middleware('auth', 'rol:1');
 
 //conductor
-Route::get('/conductor', 'ConductorController@index')->name('conductor')->middleware('auth', 'rol:3');
+
 Route::get('/conductor/consultar-viajes', 'ConductorController@consultaViajes')->name('consulta_viajes')->middleware('auth', 'rol:3');
 
 //
