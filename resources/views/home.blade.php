@@ -2,26 +2,19 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
 
 
 
-                <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-                        <div class="container">
                             <div class="row">
                                 <div class="col-12">
                                     <h1 class="texto-inside">Consultar viaje</h1>
                                 </div>
                             </div>
-
-                            <div class="row py-2">
-                                <div class="col-12">
                                     <form action= {{route("consulta_invitado")}} method="POST">
                                         <div class="borde">
                                             <div class="row m-0">
@@ -106,12 +99,5 @@
                                         <p class="texto-inside">Todos los campos son obligatorios</p>
                                         <button id="btn-formulario" type="submit" class="btn btn-subir text-light font-weight-bold">Consultar viaje</button>
                                     </form>
-                                </div>
-
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 @endsection
