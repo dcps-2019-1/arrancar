@@ -111,6 +111,7 @@ class ClienteController extends Controller
         $ida=0;
         $regreso=0;
         //borro de la sesión
+
         request()->session()->forget(['viajeida', 'viajeregreso']);
         if(isset($data["ida"]) and isset($data["regreso"])){
           //viene ida y regreso
@@ -141,7 +142,7 @@ class ClienteController extends Controller
             return(view("cliente.resumencompra",["ida"=>$ida,"regreso"=>$regreso]));
 
         }
-        else{
+        elseif(isset($data["regreso"])){
 
             //viene regreso
             $regreso=Viaje::where("id",$data["regreso"])->first();
@@ -151,6 +152,10 @@ class ClienteController extends Controller
             session(["regreso"=>$regreso]);
             return(view("cliente.resumencompra",["regreso"=>$regreso,"ida"=>$ida]));
 
+        }
+        else{
+            //Alternativo
+            return redirect()->back()->with('alert', 'Ningún viaje seleccionado');
         }
         //
 
