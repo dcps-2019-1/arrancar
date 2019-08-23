@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Tiquete;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Auth;
@@ -97,12 +98,80 @@ class ClienteController extends Controller
     }
 
     public function compra(){
-        return view("cliente.comprar");
+        $data=request()->validate(["ida"=>"exists:viajes,id","regreso"=>"exists:viajes,id","cantidad_viajeros"=>"required|numeric|min:1"],
+            ["ida.exists"=>"El viaje de ida no existe",
+                "ida.required"=>"Ninguna ida seleccionado",
+                "regreso.required"=>"Ningún regreso seleccionao",
+                "regreso.exists"=>"El viaje de regreso no existe",
+                "cantidad_viajeros.required"=>"La cantidad de viajeros es requerida",
+                "cantidad_viajeros.numeric"=>"La cantidad de viajeros debe ser númerica",
+                "cantidad_viajeros.min"=>"La cantidad de viajeros debe ser minímo 1"]);
+        $ida=0;
+        $regreso=0;
 
-        //FALTA PROGRAMAR ESTA LÓGICA DE COMPRADO
+        if(isset($data["ida"]) and isset($data["regreso"])){
+          //viene ida y regreso
+            $ida=Viaje::where("id",$data["ida"])->first();
+            $regreso=Viaje::where("id",$data["regreso"])->first();
+            //$rutaida=Ruta::where("id",$ida->ruta_id);
+            $rutaida=$ida->ruta;
+            $rutaregreso=$regreso->ruta;
+            $ida=[$ida,$rutaida];
+            $regreso=[$regreso,$rutaregreso];
+            //con 0 entro a viaje, con 1 a ruta
+            //dd($ida[0]->fecha);
+            return(view("cliente.resumencompra",["ida"=>$ida,"regreso"=>$regreso,"puestos"=>$data["cantidad_viajeros"]]));
+
+
+        }
+        elseif(isset($data["ida"])){
+            //viene ida
+            $ida=Viaje::where("id",$data["ida"])->first();
+            $rutaida=$ida->ruta;
+            $ida=[$ida,$rutaida];
+            return(view("cliente.resumencompra",["ida"=>$ida,"regreso"=>$regreso,"puestos"=>$data["cantidad_viajeros"]]));
+
+        }
+        else{
+
+            //viene regreso
+            $regreso=Viaje::where("id",$data["regreso"])->first();
+            $rutaregreso=$regreso->ruta;
+            $regreso=[$regreso,$rutaregreso];
+            return(view("cliente.resumencompra",["regreso"=>$regreso,"ida"=>$ida,"puestos"=>$data["cantidad_viajeros"]]));
+
+        }
+        //
+
+
     }
 
 
+    public  function finalizarCompra(){
+        //$data=request();
+        $data=request()->validate(["ida"=>"exists:viajes,id","regreso"=>"exists:viajes,id","puestos"=>"numeric|min:1"],
+            ["ida.exists"=>"El viaje seleccionado no existe","regreso.exists"=>"El viaje de regreso no existe",
+                "puestos.min"=>"La cantidad de puestos debe ser mínimo 1","puestos.numeric"=>"La cantida de puestos debe ser numerico"]);
+        if(isset($data["ida"]) and isset($data["regreso"])){
+
+            $creartiquetedeida=Tiquete::create(["viaje_id"=>$data["ida"],"user_id"=>Auth::user()->id,"cantidad_puestos"=>$data["puestos"]]);
+            $creartiquetederegreso=Tiquete::create(["viaje_id"=>$data["regreso"],"user_id"=>Auth::user()->id,"cantidad_puestos"=>$data["puestos"]]);
+            return redirect()->route("consultar_viaje")->with('alert', 'TIQUETES COMPRADOS');
+
+        }
+        elseif(isset($data["ida"])){
+            $creartiquetedeida=Tiquete::create(["viaje_id"=>$data["ida"],"user_id"=>Auth::user()->id,"cantidad_puestos"=>$data["puestos"]]);
+            //dd($creartiquetedeida);
+            return redirect()->route("consultar_viaje")->with('alert', 'TIQUETES COMPRADOS');
+        }
+        else{
+            $creartiquetederegreso=Tiquete::create(["viaje_id"=>$data["regreso"],"user_id"=>Auth::user()->id,"cantidad_puestos"=>$data["puestos"]]);
+            return redirect()->route("consultar_viaje")->with('alert', 'TIQUETES COMPRADOS');
+        }
+
+
+
+    }
 
 
 }

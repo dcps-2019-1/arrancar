@@ -33,8 +33,12 @@
                 <td> {{ $ida[1]->municipio_destino}} </td>
                 <td> {{ $ida[0][0]->puestos_disponibles}} </td>
                 <td> <input type="checkbox" name="ida" value={{$ida[0][0]->id}}></td>
+
             </tr>
         @endforeach
+        @if ($errors->has('ida'))
+            <p class="text-danger">{{ $errors->first('ida') }}</p>
+        @endif
         </tbody>
     </table>
 
@@ -73,8 +77,12 @@
 
                 <td> <input type="checkbox" name="regreso" value={{$ida[0][0]->id}}></td>
 
+
             </tr>
         @endforeach
+        @if ($errors->has('regreso'))
+            <p class="text-danger">{{ $errors->first('regreso') }}</p>
+        @endif
         </tbody>
     </table>
         @csrf

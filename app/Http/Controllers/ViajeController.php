@@ -8,6 +8,7 @@ use App\Empresa;
 use App\Viaje;
 use App\Ruta;
 use App\Bus;
+use App\Tiquete;
 use Illuminate\Http\Request;
 
 class ViajeController extends Controller

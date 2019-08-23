@@ -96,3 +96,5 @@ Route::get('/cliente/consultar', 'clienteController@mostrar')->name("consultar_v
 Route::post('/cliente/consultar', 'ClienteController@consulta')->name("consulta")->middleware('auth', 'rol:0');
 Route::post('cliente/consultar/fetch2', 'clienteController@fetch')->name("clientecontroller.fetch")->middleware('auth', 'rol:0');
 Route::post('cliente/consultar/comprar', 'clienteController@compra')->name("comprar")->middleware('auth', 'rol:0');
+Route::post('cliente/consultar/comprar/fin', 'clienteController@finalizarCompra')->name("comprar_fin")->middleware('auth', 'rol:0');
+
