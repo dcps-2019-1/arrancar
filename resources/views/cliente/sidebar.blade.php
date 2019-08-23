@@ -13,6 +13,11 @@
             historial de viajes</a>
     </li>
 
+    <li>
+        <a href={{route("cancelarViaje")}}><i class="fas fa-history"></i>
+            historial de viajes</a>
+    </li>
+
 </ul>
 <ul class="list-unstyled">
     <li>
