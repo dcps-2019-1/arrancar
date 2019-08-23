@@ -17,7 +17,7 @@
 
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <strong>Error!</strong> Debe seleccionar una imagen para subir<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -51,9 +51,9 @@
                 @csrf
                 <div class="form-group">
                     <input type="file" class="form-control-file" name="avatar" id="avatarFile" aria-describedby="fileHelp">
-                    <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
+                    <small id="fileHelp" class="form-text text-muted">Seleccione un archivo de imagen válido. Tamaño máximo 2MB.</small>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Agregar</button>
             </form>
         </div>
     </div>
