@@ -37,7 +37,7 @@ class fakeDataSeeder extends Seeder
 
 
         $userfakecliente = User::create(["username" => "cliente1", "email" => "cliente1@unal.edu.co", "password" => bcrypt("123456"), "telefono" => 12323443, "rol" => 0]);
-        $cliente=Cliente::create(["user_id"=>$userfakecliente->id, "nombre"=>"Loquendo", "medio_pago"=>"No se que poner", "contacto_emergencia"=>123345, "cedula"=>6765432222]);
+        $cliente=Cliente::create(["user_id"=>$userfakecliente->id, "nombre"=>"Loquendo", "medio_pago"=>"No se que poner", "contacto_emergencia"=>123345, "cedula"=>676543]);
 
         $userfakeadministrador = User::create(["username" => "administrador1", "email" => "administrador1@unal.edu.co", "password" => bcrypt("123456"), "telefono" => 12323453, "rol" => 1]);
         Administrador::create(["user_id"=>$userfakeadministrador->id]);
