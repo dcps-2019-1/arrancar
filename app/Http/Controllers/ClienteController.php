@@ -105,7 +105,7 @@ class ClienteController extends Controller
         $data=request()->validate(["ida"=>"exists:viajes,id","regreso"=>"exists:viajes,id"],
             ["ida.exists"=>"El viaje de ida no existe",
                 "ida.required"=>"Ninguna ida seleccionado",
-                "regreso.required"=>"Ningún regreso seleccionao",
+                "regreso.required"=>"Ningún regreso seleccionado",
                 "regreso.exists"=>"El viaje de regreso no existe",
                ]);
         $ida=0;
