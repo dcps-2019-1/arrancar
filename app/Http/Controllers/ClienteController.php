@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Tiquete;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Auth;
@@ -89,7 +90,11 @@ class ClienteController extends Controller
             //en [x][0][0]->está el viaje
             //en [x][1]-> esta la ruta
             //dd(count($empresasviajeregreso));
-            return view("cliente.mostrarviajes",["viajeida"=>$empresasviajeida,"viajeregreso"=>$empresasviajeregreso,"viajeros"=>$data["cantidad"]]);
+            session(['viajeida' => $empresasviajeida]);
+            session(['viajeregreso' => $empresasviajeregreso]);
+            session(['viajeros' => $data["cantidad"]]);
+            //dd(count(session("viajeida")));
+            return view("cliente.mostrarviajes");
         }
 
 
@@ -97,12 +102,111 @@ class ClienteController extends Controller
     }
 
     public function compra(){
-        return view("cliente.comprar");
+        $data=request()->validate(["ida"=>"exists:viajes,id","regreso"=>"exists:viajes,id"],
+            ["ida.exists"=>"El viaje de ida no existe",
+                "ida.required"=>"Ninguna ida seleccionado",
+                "regreso.required"=>"Ningún regreso seleccionao",
+                "regreso.exists"=>"El viaje de regreso no existe",
+               ]);
+        $ida=0;
+        $regreso=0;
+        //borro de la sesión
+        request()->session()->forget(['viajeida', 'viajeregreso']);
+        if(isset($data["ida"]) and isset($data["regreso"])){
+          //viene ida y regreso
+            $ida=Viaje::where("id",$data["ida"])->first();
+            $regreso=Viaje::where("id",$data["regreso"])->first();
+            //$rutaida=Ruta::where("id",$ida->ruta_id);
+            $rutaida=$ida->ruta;
+            $rutaregreso=$regreso->ruta;
+            $ida=[$ida,$rutaida];
+            $regreso=[$regreso,$rutaregreso];
+            //con 0 entro a viaje, con 1 a ruta
+            //dd($ida[0]->fecha);
+            session(["ida"=>$ida]);
+            session(["regreso"=>$regreso]);
+            //viajeros sigue en session
+            //dd(session("viajeros"));
+            return(view("cliente.resumencompra"));
 
-        //FALTA PROGRAMAR ESTA LÓGICA DE COMPRADO
+
+        }
+        elseif(isset($data["ida"])){
+            //viene ida
+            $ida=Viaje::where("id",$data["ida"])->first();
+            $rutaida=$ida->ruta;
+            $ida=[$ida,$rutaida];
+            session(["ida"=>$ida]);
+            session(["regreso"=>$regreso]);
+            return(view("cliente.resumencompra",["ida"=>$ida,"regreso"=>$regreso]));
+
+        }
+        else{
+
+            //viene regreso
+            $regreso=Viaje::where("id",$data["regreso"])->first();
+            $rutaregreso=$regreso->ruta;
+            $regreso=[$regreso,$rutaregreso];
+            session(["ida"=>$ida]);
+            session(["regreso"=>$regreso]);
+            return(view("cliente.resumencompra",["regreso"=>$regreso,"ida"=>$ida]));
+
+        }
+        //
+
+
     }
 
 
+    public  function finalizarCompra(){
+        //$data=request();
+        $data=request();
+        $ida=session("ida");
+        $regreso=session("regreso");
+        //En 0 tengo el viaje, en 1 la ruta
+        //dd($regreso[0]->id);
+
+        if($ida!=null and $regreso!=null){
+
+
+            $creartiquetedeida=Tiquete::create(["viaje_id"=>$ida[0]->id,"user_id"=>Auth::user()->id,"cantidad_puestos"=>session("viajeros")]);
+            $creartiquetederegreso=Tiquete::create(["viaje_id"=>$regreso[0]->id,"user_id"=>Auth::user()->id,"cantidad_puestos"=>session("viajeros")]);
+            //dd("ACA ESTOY");
+            request()->session()->forget(['ida',"regreso","viajeros"]);
+            return redirect()->route("consultar_viaje")->with('alert', 'TIQUETES COMPRADOS');
+
+        }
+        elseif($ida!=null){
+            $creartiquetedeida=Tiquete::create(["viaje_id"=>$ida[0]->id,"user_id"=>Auth::user()->id,"cantidad_puestos"=>session("viajeros")]);
+            request()->session()->forget(['ida',"regreso","viajeros"]);
+            return redirect()->route("consultar_viaje")->with('alert', 'TIQUETES COMPRADOS');
+        }
+        else{
+
+            $creartiquetederegreso=Tiquete::create(["viaje_id"=>$regreso[0]->id,"user_id"=>Auth::user()->id,"cantidad_puestos"=>session("viajeros")]);
+            request()->session()->forget(['ida',"regreso","viajeros"]);
+            return redirect()->route("consultar_viaje")->with('alert', 'TIQUETES COMPRADOS');
+        }
+
+
+
+    }
+    public function historial(){
+        $listatiquetes=Tiquete::where("user_id",Auth::user()->id)->get();
+        $detalle=Array();
+        //dd($listatiquetes);
+        foreach ($listatiquetes as $tiquete){
+            $viaje=$tiquete->viaje;
+            $ruta=$viaje->ruta;
+            //dd($tiquete);
+            array_push($detalle,[$viaje,$ruta,$tiquete]);
+        }
+        //[x][0]->viaje
+        //[x][1]->ruta
+
+        return view("cliente.mostrarHistorial",["detalle"=>$detalle]);
+
+    }
 
 
 }
