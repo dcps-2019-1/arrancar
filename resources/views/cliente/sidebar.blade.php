@@ -14,8 +14,8 @@
     </li>
 
     <li>
-        <a href={{route("cancelarViaje")}}><i class="fas fa-history"></i>
-            historial de viajes</a>
+        <a href={{route("cancelarViaje")}}><i class="fas fa-window-close"></i>
+            cancelar viajes</a>
     </li>
 
 </ul>
