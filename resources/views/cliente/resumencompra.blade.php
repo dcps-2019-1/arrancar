@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>RESUMEN DE SELECCIÓN</h1>
+        <h1 class="texto-inside">Resumen de selección</h1>
         <form action={{route("comprar_fin")}} method="POST">
 
                 @if(session("ida")!=0 and session("regreso")!=0)
@@ -51,7 +51,25 @@
             {{$precio1=session("ida")[0]->precio}}
                 {{$precio2=session("regreso")[0]->precio}}
             </p>
-            <span> Precio total: {{session("viajeros")*($precio1+$precio2) }}</span>
+                <div class="row">
+                    <div class="col">
+                        
+                    </div>
+                    <div class="col">
+                        
+                    </div>
+                    <div class="col">
+                        <span class="font-weight-bold texto-inside"> <h4>Precio total: {{session("viajeros")*($precio1+$precio2) }}</h4></span>
+                        
+                    </div>
+                    <div class="col">
+                        
+                    </div>
+                    <div class="col">
+                        
+                    </div>
+                    
+                </div>
 
 
                 @elseif(session("regreso")==0)
@@ -85,8 +103,16 @@
                     </tbody>
                 </table>
 
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col">
+                        <span class="font-weight-bold texto-inside"> Precio total: {{session("ida")[0]->precio*session("viajeros")}}</span>
 
-                <span> Precio total: {{session("ida")[0]->precio*session("viajeros")}}</span>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
 
             @else
                 {{request()->session()->forget(['ida'])}}
@@ -118,21 +144,25 @@
                     </tr>
                     </tbody>
                 </table>
-                <span> Precio total: {{(session("regreso")[0]->precio)*session("viajeros")}}</span>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col">
+                        <span class="font-weight-bold texto-inside">Precio total: {{(session("regreso")[0]->precio)*session("viajeros")}}</span>
 
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
 
                 @endif
 
-
-
-            <br>
                     @csrf
                     <button id="btn-formulario" type="submit" class="btn btn-subir text-light font-weight-bold">Comprar</button>
         </form>
         <br>
         <a href={{route("consultar_viaje")}}><button id="btn-formulario" type="submit" class="btn btn-subir text-light font-weight-bold">Cancelar</button></a>
 
-    </div>
     </div>
 
 @endsection
