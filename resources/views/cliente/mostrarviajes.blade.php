@@ -95,7 +95,8 @@
     <button id="btn-formulario" type="submit" class="btn btn-subir text-light font-weight-bold">Seleccionar viajes</button>
 
 </form>
-
+    <br>
+    <a href={{route("consultar_viaje")}}><button id="btn-formulario" type="submit" class="btn btn-subir text-light font-weight-bold">Volver atras</button></a>
     </div>
 </div>
 

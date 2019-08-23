@@ -129,6 +129,8 @@
                     @csrf
                     <button id="btn-formulario" type="submit" class="btn btn-subir text-light font-weight-bold">Comprar</button>
         </form>
+        <br>
+        <a href={{route("consultar_viaje")}}><button id="btn-formulario" type="submit" class="btn btn-subir text-light font-weight-bold">Cancelar</button></a>
 
     </div>
     </div>
