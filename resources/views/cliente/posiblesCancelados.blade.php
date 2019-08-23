@@ -26,7 +26,7 @@
                     <td> {{ $viaje[1]->hora }} </td>
                     <td> {{ $viaje[2]->municipio_origen }} </td>
                     <td> {{ $viaje[2]->municipio_destino }} </td>
-                    <td><a href="cancelar/{{$viaje[0]->id}}">Cancelar viaje</a></td>
+                    <td><a class="text-danger font-weight-bold" href="cancelar/{{$viaje[0]->id}}">Cancelar viaje</a></td>
                 </tr>
             @endforeach
             </tbody>
