@@ -5,7 +5,8 @@
         <h1>RESUMEN DE SELECCIÓN</h1>
         <form action={{route("comprar_fin")}} method="POST">
 
-                @if($ida!=0 and $regreso!=0)
+                @if(session("ida")!=0 and session("regreso")!=0)
+
                 <table class="table table-light">
 
                 <thead class="color text-light">
@@ -25,38 +26,36 @@
 
                     <tr>
                         <td> Ida</td>
-                        <td> {{ $ida[0]->fecha}} </td>
-                        <td> {{ $ida[0]->hora}} </td>
-                        <td> {{ $ida[0]->precio}} </td>
-                        <td> {{ $ida[1]->municipio_origen}} </td>
-                        <td> {{ $ida[1]->municipio_destino}} </td>
-                        <td> {{ $puestos}} </td>
+                        <td> {{ session("ida")[0]->fecha}} </td>
+                        <td> {{ session("ida")[0]->hora}} </td>
+                        <td> {{ session("ida")[0]->precio}} </td>
+                        <td> {{ session("ida")[1]->municipio_origen}} </td>
+                        <td> {{ session("ida")[1]->municipio_destino}} </td>
+                        <td> {{ session("viajeros")}} </td>
 
 
 
                     </tr>
                     <tr>
                         <td> Regreso</td>
-                        <td> {{ $regreso[0]->fecha}} </td>
-                        <td> {{ $regreso[0]->hora}} </td>
-                        <td> {{ $regreso[0]->precio}} </td>
-                        <td> {{ $regreso[1]->municipio_origen}} </td>
-                        <td> {{ $regreso[1]->municipio_destino}} </td>
-                        <td> {{ $puestos}} </td>
+                        <td> {{ session("regreso")[0]->fecha}} </td>
+                        <td> {{ session("regreso")[0]->hora}} </td>
+                        <td> {{ session("regreso")[0]->precio}} </td>
+                        <td> {{ session("regreso")[1]->municipio_origen}} </td>
+                        <td> {{ session("regreso")[1]->municipio_destino}} </td>
+                        <td> {{ session("viajeros")}}</td>
                     </tr>
                 </tbody>
             </table>
-            <span> Precio total: {{($ida[0]->precio + $regreso[0]->precio)*$puestos }}</span>
-                <input type="number" name="valor" value={{($ida[0]->precio + $regreso[0]->precio)*$puestos }} hidden>
-                <input type="number" name="ida" value={{$ida[0]->id}} hidden>
-                @if ($errors->has('ida'))
-                    <p class="text-danger">{{ $errors->first('ida') }}</p>
-                @endif
-                <input type="number" name="regreso" value={{$regreso[0]->id}} hidden>
-                @if ($errors->has('regreso'))
-                    <p class="text-danger">{{ $errors->first('regreso') }}</p>
-                @endif
-                @elseif($regreso==0)
+            <p hidden>
+            {{$precio1=session("ida")[0]->precio}}
+                {{$precio2=session("regreso")[0]->precio}}
+            </p>
+            <span> Precio total: {{session("viajeros")*($precio1+$precio2) }}</span>
+
+
+                @elseif(session("regreso")==0)
+                {{request()->session()->forget(['regreso'])}}
                 <table class="table table-light">
                     <h2 class="display-5"> Viaje de ida</h2>
                     <thead class="color text-light">
@@ -75,23 +74,22 @@
 
                     <tr>
                         <td> Ida</td>
-                        <td> {{ $ida[0]->fecha}} </td>
-                        <td> {{ $ida[0]->hora}} </td>
-                        <td> {{ $ida[0]->precio}} </td>
-                        <td> {{ $ida[1]->municipio_origen}} </td>
-                        <td> {{ $ida[1]->municipio_destino}} </td>
-                        <td> {{ $puestos}} </td>
+                        <td> {{ session("ida")[0]->fecha}} </td>
+                        <td> {{ session("ida")[0]->hora}} </td>
+                        <td> {{ session("ida")[0]->precio}} </td>
+                        <td> {{ session("ida")[1]->municipio_origen}} </td>
+                        <td> {{ session("ida")[1]->municipio_destino}} </td>
+                        <td> {{ session("viajeros")}} </td>
 
                     </tr>
                     </tbody>
                 </table>
-                <span> Precio total: {{$ida[0]->precio*$puestos}}</span>
-                <input type="number" name="ida" value={{$ida[0]->id}} hidden>
-                @if ($errors->has('ida'))
-                    <p class="text-danger">{{ $errors->first('ida') }}</p>
-                @endif
-                <input type="number" name="valor" value= {{$ida[0]->precio*$puestos}} hidden>
+
+
+                <span> Precio total: {{session("ida")[0]->precio*session("viajeros")}}</span>
+
             @else
+                {{request()->session()->forget(['ida'])}}
                 <table class="table table-light">
                     <h2 class="display-5"> Viaje de ida</h2>
                     <thead class="color text-light">
@@ -110,33 +108,25 @@
 
                     <tr>
                         <td> Regreso</td>
-                        <td> {{ $regreso[0]->fecha}} </td>
-                        <td> {{ $regreso[0]->hora}} </td>
-                        <td> {{ $regreso[0]->precio}} </td>
-                        <td> {{ $regreso[1]->municipio_origen}} </td>
-                        <td> {{ $regreso[1]->municipio_destino}} </td>
-                        <td> {{ $puestos}} </td>
+                        <td> {{ session("regreso")[0]->fecha}} </td>
+                        <td> {{ session("regreso")[0]->hora}} </td>
+                        <td> {{ session("regreso")[0]->precio}} </td>
+                        <td> {{ session("regreso")[1]->municipio_origen}} </td>
+                        <td> {{ session("regreso")[1]->municipio_destino}} </td>
+                        <td> {{ session("viajeros")}}</td>
 
                     </tr>
                     </tbody>
                 </table>
-                <span> Precio total: {{$regreso[0]->precio*$puestos}}</span>
-                <input type="number" name="regreso" value={{$regreso[0]->id}} hidden>
-                @if ($errors->has('regreso'))
-                    <p class="text-danger">{{ $errors->first('regreso') }}</p>
-                @endif
-                <input type="number" name="valor" value={{$regreso[0]->precio*$puestos}} hidden>
-            @endif
-                    <input type="number" name="puestos" hidden value={{$puestos}}>
-                    @if ($errors->has('puestos'))
-                        <p class="text-danger">{{ $errors->first('puestos') }}</p>
-                    @endif
-                    @csrf
+                <span> Precio total: {{(session("regreso")[0]->precio)*session("viajeros")}}</span>
 
+
+                @endif
 
 
 
             <br>
+                    @csrf
                     <button id="btn-formulario" type="submit" class="btn btn-subir text-light font-weight-bold">Comprar</button>
         </form>
 
