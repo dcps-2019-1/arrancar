@@ -208,5 +208,45 @@ class ClienteController extends Controller
 
     }
 
+    public function cancelar(){
+        $listatiquetes=Tiquete::where("user_id",Auth::user()->id)->get(); //obtengo todos los viajes del usuario, ahora busco
+        //los que la fecha de viaje sea inferior a hoy.
+        $posibles=Array();
+        foreach ($listatiquetes as $tiquete){
+            $viaje=$tiquete->viaje;
+            $ruta=$viaje->ruta;
+            $fecha=$viaje->fecha;
+            if($fecha>date("Y-m-d")){
+                //como el viaje no ha pasado, lo puedo agregar a la lista de cancelables
+                array_push($posibles,[$tiquete,$viaje,$ruta]);
+            }
+
+        }
+        //[x][0] es tiquete, [x][1] es viaje, [x][2] es ruta
+        //dd($posibles[0][1]->id);
+        return(view("cliente.posiblesCancelados",["posibles"=>$posibles]));
+
+    }
+    public function cancelarViaje($idtiquete){
+        $tiquete=Tiquete::where("id",$idtiquete)->get();
+
+        try {
+            // Validate the value...
+            $tiquete[0]->delete();
+            return redirect()->back()->with('alert', 'Viaje cancelado');
+
+        } catch (Exception $e) {
+            //fljo altrntivo
+            return redirect()->back()->with('alert', 'Viaje no pudo ser cancelado');
+        }
+
+
+
+
+
+
+
+    }
+
 
 }

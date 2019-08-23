@@ -99,4 +99,6 @@ Route::post('cliente/consultar/comprar', 'clienteController@compra')->name("comp
 Route::post('cliente/consultar/comprar/fin', 'clienteController@finalizarCompra')->name("comprar_fin")->middleware('auth', 'rol:0');
 
 Route::get('/cliente/historial', 'clienteController@historial')->name("historial")->middleware('auth', 'rol:0');
+Route::get('/cliente/cancelar', 'clienteController@cancelar')->name("cancelarViaje")->middleware('auth', 'rol:0');
+route::get("cliente/cancelar/{idtiquete}","clienteController@cancelarViaje")->name("cancelar_ya")->middleware('auth', 'rol:0');
 
