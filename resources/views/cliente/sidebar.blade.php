@@ -8,6 +8,10 @@
         <a href={{route("consultar_viaje")}}><i class="fas fa-search"></i>
             Consultar viaje</a>
     </li>
+    <li>
+        <a href={{route("historial")}}><i class="fas fa-history"></i>
+            historial de viajes</a>
+    </li>
 
 </ul>
 <ul class="list-unstyled">

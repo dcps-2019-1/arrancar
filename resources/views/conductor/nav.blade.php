@@ -6,7 +6,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/profile">
                 <h5>Perfil de usuario</h5>
             </a>
         </li>

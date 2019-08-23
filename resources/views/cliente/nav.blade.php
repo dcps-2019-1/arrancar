@@ -6,7 +6,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href={{route("historial")}}>
                 <h5>Consultar historial</h5>
             </a>
         </li>

@@ -90,7 +90,10 @@ class ClienteController extends Controller
             //en [x][0][0]->está el viaje
             //en [x][1]-> esta la ruta
             //dd(count($empresasviajeregreso));
-            return view("cliente.mostrarviajes",["viajeida"=>$empresasviajeida,"viajeregreso"=>$empresasviajeregreso,"viajeros"=>$data["cantidad"]]);
+            session(['viajeida' => $empresasviajeida]);
+            session(['viajeregreso' => $empresasviajeregreso]);
+            session(['viajeros' => $data["cantidad"]]);
+            return view("cliente.mostrarviajes");
         }
 
 
@@ -170,6 +173,22 @@ class ClienteController extends Controller
         }
 
 
+
+    }
+    public function historial(){
+        $listatiquetes=Tiquete::where("user_id",Auth::user()->id)->get();
+        $detalle=Array();
+        //dd($listatiquetes);
+        foreach ($listatiquetes as $tiquete){
+            $viaje=$tiquete->viaje;
+            $ruta=$viaje->ruta;
+            //dd($tiquete);
+            array_push($detalle,[$viaje,$ruta,$tiquete]);
+        }
+        //[x][0]->viaje
+        //[x][1]->ruta
+
+        return view("cliente.mostrarHistorial",["detalle"=>$detalle]);
 
     }
 
