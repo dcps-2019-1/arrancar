@@ -104,8 +104,8 @@ class ClienteController extends Controller
     public function compra(){
         $data=request()->validate(["ida"=>"exists:viajes,id","regreso"=>"exists:viajes,id"],
             ["ida.exists"=>"El viaje de ida no existe",
-                "ida.required"=>"Ninguna ida seleccionado",
-                "regreso.required"=>"Ningún regreso seleccionado",
+                "ida.required"=>"Ninguna viaje de ida seleccionado",
+                "regreso.required"=>"Ningún viaje de regreso seleccionado",
                 "regreso.exists"=>"El viaje de regreso no existe",
                ]);
         $ida=0;
