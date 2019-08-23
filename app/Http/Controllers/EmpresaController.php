@@ -107,4 +107,31 @@ public function  registrarEmpresa(){
 
     }
 
+    public function borrarEmpresa(){
+        $empresas=Empresa::all();
+        return(view("administrador.borrarEmpresa",["empresas"=>$empresas]));
+
+
+    }
+
+    public function borrar(){
+
+        $data=request()->validate(["empresa"=>"required|exists:empresas,id"],["empresa.required"=>"El nombre de la empresa es requerido",
+            "empresa.exists"=>"La empresa indicada no existe en el sistema"]);
+        //dd($data);
+        //Obtengo la empresa
+        $borrar=Empresa::where("id",$data["empresa"])->first();
+        $borraraux=Empresa::where("id",$data["empresa"])->first();
+        //Ejecuto metodo que borra relaciones
+        $borrar->borrado();
+        //borro la empresa
+        $borrar->delete($this);
+        //borro el usuario
+        $borraraux->user->delete();
+        $empresas=Empresa::all();
+
+        return redirect()->back()->with('alert', 'Empresa borrada exitosamente');
+
+
+    }
 }
